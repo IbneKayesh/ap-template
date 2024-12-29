@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>apjs framework</title>
+    <link href="lib/css/style.css" rel="stylesheet" />
+    <link href="lib/css/pop-notify.css" rel="stylesheet" />
+    <link href="lib/fontawesome-free-6.6.0-web/css/all.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="styles.css">
+    
+    <script src="lib/jquery/jquery-3.6.0.min.js"></script>
+    <script src="core/router.js"></script>
+    <script src="core/state.js"></script>
+    <script src="core/component.js"></script>
+    <script src="core/ajax.js"></script>
+    <script src="framework.js"></script>
+</head>
+<body>
+    <div id="layout">
+        <header>
+            <h1>apjs Framework</h1>
+            <nav>
+                <a href="#/login">Login</a>
+                <a href="#/list">View List</a>
+                <a href="#/business">Business</a>
+                <a href="#/">Home</a>
+            </nav>
+        </header>
+        <main id="app"></main>
+        <footer>
+            <p>&copy; 2024 My App</p>
+        </footer>
+    </div>
+    
+
+    <script src="lib/jquery/js.cookie.min.js"></script>
+    <script src="lib/js/script.js"></script>
+    <script src="lib/js/pop-notify.js"></script>
+    <script src="lib/js/ap-data-table.js"></script>
+    <script src="lib/js/search-grid.js"></script>
+
+    <script>
+        const baseUrl = 'http://localhost:5092/api/v1/Company/Business/';
+        const baseUrl1 = 'http://localhost:5092';
+        const API_BASE_URL = "https://jsonplaceholder.typicode.com";
+        // Define Routes
+        Router.add("/", () => {
+            loadPage("pages/home.html", "pages/home.js");
+        });
+
+        Router.add("/login", () => {
+            loadPage("pages/login.html", "pages/login.js");
+        });
+
+        Router.add("/list", () => {
+            loadPage("pages/list.html", "pages/list.js");
+        });
+        
+        Router.add("/business", () => {
+            loadPage("pages/business.html", "pages/business.js");
+        });
+
+        // Utility to load HTML and JS files dynamically
+        function loadPage(htmlPath, jsPath) {
+            $("#app").load(htmlPath, () => {
+                if (jsPath) {
+                    $.getScript(jsPath);
+                }
+            });
+        }
+        // Initialize Framework
+        $(document).ready(() => Framework.init());
+    </script>
+</body>
+</html>
