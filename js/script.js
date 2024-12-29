@@ -3,7 +3,7 @@
     License: MIT
     Version : 1.0.0
     Date: Oct - 2024
-    Inpired from Bootstrap, Tailwind CSS and jQuery
+    Inspired from Bootstrap, Tailwind CSS and jQuery
  ***/
 
 $(document).ready(function () {
@@ -181,7 +181,7 @@ var WorkInProgress = (function () {
         Hide: function () {
             activeRequests--; // Decrement active requests count
             if (activeRequests <= 0) {
-                activeRequests = 0; // Ensure it doesn’t go negative
+                activeRequests = 0; // Ensure it doesnï¿½t go negative
                 $('#loading-overlay').fadeOut(750, function () {
                     $(this).remove();
                 });
