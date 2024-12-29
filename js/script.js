@@ -8,9 +8,6 @@
 
 $(document).ready(function () {
 
-
-
-
     // Select all input elements of type file
     $('input[type="file"]').each(function () {
         const defaultLabel = $(this).next('label').text(); // Get the label text next to the input
@@ -50,57 +47,52 @@ $(document).ready(function () {
         }
     });
 
+    //// Toggle the expandable rows when the arrow is clicked
+    //$('.divtab-row-column.divtab-toggle').on('click', function () {
+    //    // Get the expandable rows for the clicked row (this will expand only the immediate next level)
+    //    var expandableRows = $(this).closest('.divtab-row').next('.divtab-expandable-rows');
+
+    //    // Toggle the expanded/collapsed state for the targeted expandable rows
+    //    expandableRows.slideToggle(200);
+
+    //    // Toggle the expanded class on the header for arrow rotation
+    //    $(this).toggleClass('expanded');
+
+    //    // Collapse any deeper levels (levels beyond the immediate next one)
+    //    expandableRows.find('.divtab-expandable-rows').slideUp(200);
+    //    expandableRows.find('.divtab-row-column.divtab-toggle').removeClass('expanded');
+    //});
 
 
-    //table sort option
-    // Event listener for sorting when a header is clicked
-    $('.sortable th').on('click', function () {
-        var index = $(this).index();  // Get the index of the clicked header
-        var table = $(this).closest('table');  // Get the closest table
-        sortTable(table, index);
-    });
-
-    // Function to sort the table
-    function sortTable(table, columnIndex) {
-        var rows = table.find('tbody tr').toArray();  // Get all rows in the tbody
-
-        // Check the current sort direction
-        var isAscending = table.find('th').eq(columnIndex).hasClass('asc');
-        var direction = isAscending ? 1 : -1;
-
-        // Sort rows based on the clicked column index
-        rows.sort(function (a, b) {
-            var aText = $(a).children('td').eq(columnIndex).text();
-            var bText = $(b).children('td').eq(columnIndex).text();
-
-            // Compare the text content of the cells in the given column
-            return (aText > bText ? 1 : (aText < bText ? -1 : 0)) * direction;
-        });
-
-        // Append sorted rows back to the table
-        $.each(rows, function (i, row) {
-            table.find('tbody').append(row);
-        });
-
-        // Toggle the sort direction classes on the header
-        table.find('th').removeClass('asc desc');
-        table.find('th').eq(columnIndex).addClass(isAscending ? 'desc' : 'asc');
-    }
-
-
-
-    // Toggle the expandable rows when the arrow is clicked
-    $('.divtab-row-column.divtab-toggle').on('click', function () {
-        // Get the expandable rows for the clicked row
-        var expandableRows = $(this).closest('.divtab-row').next('.divtab-expandable-rows');
-        // Toggle the expanded/collapsed state
-        expandableRows.slideToggle(200);
-        // Toggle the expanded class on the header for arrow rotation
-        $(this).toggleClass('expanded');
+    // On click of parent row
+    $(document).on('click', '.parent-row', function () {
+        var className = $(this).data('class'); // Get the unique class name
+        // Toggle visibility of related rows
+        $('.' + className).toggle();
+        // Toggle arrow icon
+        $(this).find('.table-row-arrow i').toggleClass('fa-chevron-down fa-chevron-up');
     });
 });
-// Function to add a new tab
 
+$(document).on('click', '.divtab-row-column.divtab-toggle', function () {
+    var expandableRows = $(this).closest('.divtab-row').next('.divtab-expandable-rows');
+
+    // Slide toggle for the relevant expandable row
+    expandableRows.slideToggle(200);
+
+    // Toggle the arrow icon direction (down/up)
+    $(this).find('.divtab-arrow i').toggleClass('fa-chevron-down fa-chevron-up');
+
+    // Toggle the expanded class for visual feedback
+    $(this).toggleClass('expanded');
+
+    // Optional: Close any nested expandable rows within the current expandable row
+    expandableRows.find('.divtab-expandable-rows').slideUp(200);
+    expandableRows.find('.divtab-row-column.divtab-toggle').removeClass('expanded');
+});
+
+
+// Function to add a new tab
 const TabPage = {
     addTab: function (tabName) {
         var tabCount = $('.tab-links li').length + 1;
@@ -134,136 +126,24 @@ const TabPage = {
     }
 };
 
-// Create the notification container
-const notificationContainer = $('<div id="notification-container"></div>').appendTo('body');
-// Create the overlay
-const overlay = $('<div class="overlay"></div>').appendTo('body').hide();
-const Popup = {
-    Show: function (type, message) {
-        const icon = type === 'success' ? 'fas fa-check' :
-                     type === 'error' ? 'fas fa-times' :
-                     type === 'info' ? 'fas fa-info-circle' :
-                     type === 'warn' ? 'fas fa-exclamation-triangle' : '';
-
-        const notification = $('<div class="notification"></div>')
-            .addClass(type)
-            .html(`<i class="${icon} icon-button"></i> ${message}`)
-            .appendTo(notificationContainer)
-            .fadeIn(300)
-            .delay(40000)
-            .fadeOut(300, function () {
-                $(this).remove();
-            });
-    },
-    Confirm: function (message, yesCallback, noCallback) {
-        // Show the overlay
-        overlay.show();
-        const confirmDialog = $('<div class="confirm-dialog"></div>')
-            .html(`<p>${message}</p>`)
-            .append('<button class="button btn-green btn-confirm-yes"><span class="far fa-check-circle"></span> Yes</button>')
-            .append('<button class="button btn-red btn-confirm-no"style="float: right;"><span class="far fa-times-circle"></span> No</button>')
-            .appendTo(notificationContainer)
-            .fadeIn(300);
-
-        // Center the dialog
-        confirmDialog.css({
-            position: 'fixed',
-            top: '50%',
-            left: '50%',
-            bottom: '39%',
-            transform: 'translate(-50%, -50%)'
-        });
-
-        // Handle button clicks
-        confirmDialog.find('.btn-confirm-yes').click(function () {
-            yesCallback();
-            // Hide the overlay
-            overlay.hide();
-            confirmDialog.fadeOut(300, function () {
-                $(this).remove();
-            });
-        });
-
-        confirmDialog.find('.btn-confirm-no').click(function () {
-            noCallback();
-            overlay.hide(); // Hide the overlay
-            confirmDialog.fadeOut(300, function () {
-                $(this).remove();
-            });
-        });
-    }
-};
-
 
 // Function to show the modal
-function showPopupModal() {
-    $('#modal').fadeIn(300);
+function showPopupModal(modalId) {
+    $(`#${modalId}`).fadeIn(300);
 }
 
 // Function to hide the modal
-function hidePopupModal() {
-    $('#modal').fadeOut(300);
+function hidePopupModal(modalId) {
+    $(`#${modalId}`).fadeOut(300);
 }
-$('.modal-close-btn').on('click', function () {
-    hidePopupModal();
+
+// Event handlers for close and ok buttons
+$(document).on('click', '.modal-close-btn, .modal-ok-btn, .modal-close-btn-icon', function () {
+    const modalId = $(this).data('modal-id');
+    $(`#${modalId}`).fadeOut(300);
 });
-$('.modal-ok-btn').on('click', function () {
-    hidePopupModal();
-});
-$('.modal-close-btn-icon').on('click', function () {
-    hidePopupModal();
-});
-$.fn.ToTable = function () {
-    const $table = this;
-    const $thead = $table.find('thead');
-    const $tbody = $table.find('tbody');
 
-    // Create a row for search inputs
-    const $searchRow = $('<tr></tr>').appendTo($thead);
-
-    // Loop through each header and create a corresponding search input
-    $thead.find('th').each(function (index) {
-        const $th = $(this);
-        const $input = $('<input>', {
-            type: 'text',
-            placeholder: `Search ${$th.text()}...`,
-            // Event handler for keyup
-            keyup: function () {
-                const value = $(this).val().toLowerCase();
-                $tbody.find('tr').filter(function () {
-                    $(this).toggle($(this).find('td').eq(index).text().toLowerCase().indexOf(value) > -1);
-                });
-            }
-        });
-
-        // Append the input to the search row
-        $('<th class="search-input"></th>').append($input).appendTo($searchRow);
-    });
-};
-
-//function sortTable(n) {
-//    const table = this.closest('table'); // Use 'this' to get the closest table element
-//    const rows = Array.from(table.rows).slice(1); // Exclude header row
-//    const isAscending = table.rows[0].cells[n].classList.contains("asc");
-//    const direction = isAscending ? 1 : -1;
-
-//    // Sort the rows based on the column index (n)
-//    rows.sort((a, b) => {
-//        const aText = a.cells[n].textContent || a.cells[n].innerText;
-//        const bText = b.cells[n].textContent || b.cells[n].innerText;
-//        return (aText > bText ? 1 : aText < bText ? -1 : 0) * direction;
-//    });
-
-//    // Append the sorted rows back to the table body
-//    rows.forEach(row => table.querySelector("tbody").appendChild(row));
-
-//    // Toggle class to keep track of the current sort direction
-//    table.querySelectorAll("th").forEach(th => th.classList.remove("asc", "desc"));
-//    table.rows[0].cells[n].classList.toggle(isAscending ? "desc" : "asc");
-//}
-
-
-var WorkInProgress = {
+var WorkInProgress_v1 = {
     Show: function (message) {
         var overlay = `
             <div id='loading-overlay' class="loading-overlay">
@@ -271,11 +151,106 @@ var WorkInProgress = {
                 <p class="loading-text">${message}</p>
             </div>
         `;
-
         $('body').append(overlay);
-        $('#loading-overlay').show();
+        $('#loading-overlay').fadeIn(550);
     },
     Hide: function () {
-        $('#loading-overlay').remove();
+        $('#loading-overlay').fadeOut(750, function () {
+            $(this).remove();
+        });
     }
 };
+
+var WorkInProgress = (function () {
+    let activeRequests = 0; // Track active AJAX requests
+    return {
+        Show: function (message) {
+            if (activeRequests === 0) {
+                var overlay = `
+                    <div id='loading-overlay' class="loading-overlay">
+                        <div class="spinner"></div>
+                        <p class="loading-text">${message}</p>
+                    </div>
+                `;
+                $('body').append(overlay);
+                $('#loading-overlay').fadeIn(550);
+            }
+            activeRequests++; // Increment active requests count
+        },
+
+        Hide: function () {
+            activeRequests--; // Decrement active requests count
+            if (activeRequests <= 0) {
+                activeRequests = 0; // Ensure it doesn’t go negative
+                $('#loading-overlay').fadeOut(750, function () {
+                    $(this).remove();
+                });
+            }
+        }
+    };
+})();
+
+
+
+// Update the countdown every second
+setInterval(EventEndDateTime, 1000);
+// Update the countdown every second
+function EventEndDateTime() {
+    $('.end-date-time').each(function () {
+        var eventEndTime = $(this).data('end-date-time');
+        var eventEndDate = new Date(eventEndTime);
+        var now = new Date();
+        var diff = eventEndDate - now;
+        var countdown = eventEndTime;
+        if (diff > 0) {
+            var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            var countdown = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        } else {
+            $(this).addClass("text-red");
+            countdown = FormatStringToDateTime(eventEndTime);
+        }        
+        $(this).text(countdown);
+    });
+}
+
+
+//for chrome web browser
+function FormatStringToDateOnly(dateString) {
+    var date = new Date(dateString);
+    var year = date.getFullYear();
+    var month = String(date.getMonth() + 1).padStart(2, '0'); // Month is zero-based
+    var day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
+function FormatStringToDateTime(dateString) {
+    var date = new Date(dateString);
+    var year = date.getFullYear();
+    var month = String(date.getMonth() + 1).padStart(2, '0');
+    var day = String(date.getDate()).padStart(2, '0');
+    var hours = date.getHours();
+    var minutes = String(date.getMinutes()).padStart(2, '0');
+    var seconds = String(date.getSeconds()).padStart(2, '0');
+    var ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12 || 12;
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds} ${ampm}`;
+}
+
+//Generate key like Guid
+function GenerateGUID() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        const r = (Math.random() * 16) | 0;
+        const v = c === 'x' ? r : (r & 0x3) | 0x8;
+        return v.toString(16);
+    });
+}
+
+
+// get query parameters
+function GetQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
