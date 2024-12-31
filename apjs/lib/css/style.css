@@ -143,12 +143,12 @@ body {
         height: auto
     }
 
-.user-name {
+.navbar-user-name {
     text-align: center;
     margin: 10px 0 5px
 }
 
-.user-designation {
+.navbar-user-designation {
     text-align: center;
     margin: 0 0 10px
 }

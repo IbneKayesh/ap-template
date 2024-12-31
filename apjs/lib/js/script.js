@@ -7,7 +7,6 @@
  ***/
 
 $(document).ready(function () {
-
     // Select all input elements of type file
     $('input[type="file"]').each(function () {
         const defaultLabel = $(this).next('label').text(); // Get the label text next to the input
@@ -181,7 +180,7 @@ var WorkInProgress = (function () {
         Hide: function () {
             activeRequests--; // Decrement active requests count
             if (activeRequests <= 0) {
-                activeRequests = 0; // Ensure it doesn’t go negative
+                activeRequests = 0; // Ensure it doesnï¿½t go negative
                 $('#loading-overlay').fadeOut(750, function () {
                     $(this).remove();
                 });

@@ -1,5 +1,5 @@
 $(document).ready(() => {
-    const userState = localStorage.getItem("userState");
+    const userState = State.GlobalGet("loginhtml");
     if (!userState) {
         // If no user is logged in, redirect to login page
         window.location.hash = "#/login";

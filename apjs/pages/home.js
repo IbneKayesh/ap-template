@@ -1,6 +1,6 @@
 $(document).ready(() => {
     // Check if the user is logged in
-    const userState = localStorage.getItem("userState");
+    const userState = State.GlobalGet("loginhtml");
 
     if (userState) {
         const user = JSON.parse(userState);
@@ -13,7 +13,7 @@ $(document).ready(() => {
 
     $("#logoutButton").on("click", () => {
         // Clear user state from localStorage
-        localStorage.removeItem("userState");
+        State.GlobalRemove("loginhtml");
         // Redirect to login page
         window.location.hash = "#/login";
     });

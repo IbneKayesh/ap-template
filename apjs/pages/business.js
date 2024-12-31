@@ -1,29 +1,27 @@
 //function: 0
 $(document).ready(() => {
-    const userState = localStorage.getItem("userState");
+    const userState = State.GlobalGet("loginhtml");
     if (!userState) {
         // If no user is logged in, redirect to login page
         window.location.hash = "#/login";
+    } else {
+        $('#table-list-business').ToTable();
+
+        WorkInProgress.Show('Getting ready...');
+        $.when(PageGoActionEvent('CountryId', '0'), PageGoActionEvent('CurrencyId', '0'))
+            .then(function () {
+                //do something
+            })
+            .fail(function () {
+                // At least one AJAX call failed
+                Popup.Show("error", "Error loading data.");
+            })
+            .always(function () {
+                WorkInProgress.Hide();
+            });
     }
 });
 
-function LoadAction(){
-    
-    $('#table-list-business').ToTable();
-
-    WorkInProgress.Show('Getting ready...');
-    $.when(PageGoActionEvent('CountryId', '0'), PageGoActionEvent('CurrencyId', '0'))
-        .then(function () {
-            //do something
-        })
-        .fail(function () {
-            // At least one AJAX call failed
-            Popup.Show("error", "Error loading data.");
-        })
-        .always(function () {
-            WorkInProgress.Hide();
-        });
-}
 //function: 1
 function PageGoClear(action) {
     if (action === 'div-page-entry-business') {
@@ -90,7 +88,6 @@ function PageGoValidateInput(action) {
             isValid = false;
         }
         var IsActive = $('#IsActive').is(':checked');
-
 
         newDataCollection = {
             Id: Id,
@@ -180,7 +177,7 @@ function PageGoActionEvent(action, dataid) {
     if (action === 'div-page-list-business') {
         WorkInProgress.Show('Getting ready...');
         $.ajax({
-            url: baseUrl + 'GetAll',
+            url: API_BASE_URL + 'Company/Business/GetAll',
             type: 'POST',
             contentType: 'application/json',
             success: function (data, status, xhr) {
@@ -188,6 +185,7 @@ function PageGoActionEvent(action, dataid) {
                 var dynData = parsedData.DynamicData;
                 if (parsedData.SUCCESS) {
                     GenerateTableHTML('table-list-business', dynData);//tableName, dataList
+                    State.GlobalSet('table-list-business', dynData);
                 } else {
                     Popup.Show("error", parsedData.MESSAGE);
                 }
@@ -205,7 +203,7 @@ function PageGoActionEvent(action, dataid) {
         if (validationSummary.isValid) {
             WorkInProgress.Show('Getting ready....');
             $.ajax({
-                url: baseUrl + 'CreateUpdate',
+                url: API_BASE_URL + 'Company/Business/CreateUpdate',
                 type: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify(validationSummary.newDataCollection),
@@ -236,7 +234,7 @@ function PageGoActionEvent(action, dataid) {
         };
         WorkInProgress.Show('Getting ready....');
         $.ajax({
-            url: baseUrl + 'GetById',
+            url: API_BASE_URL + 'Company/Business/GetById',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(newDataCollection),
@@ -263,7 +261,7 @@ function PageGoActionEvent(action, dataid) {
         };
         WorkInProgress.Show('Getting ready....');
         $.ajax({
-            url: baseUrl + 'DeleteById',
+            url: API_BASE_URL + 'Company/Business/DeleteById',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(newDataCollection),
@@ -288,7 +286,7 @@ function PageGoActionEvent(action, dataid) {
             EntityName: 'COUNTRY'
         };
         $.ajax({
-            url: baseUrl1 +'/api/v1/Setup/EntityValue/GetByEntityName',
+            url: API_BASE_URL + 'Setup/EntityValue/GetByEntityName',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(newDataCollection),
@@ -327,7 +325,7 @@ function PageGoActionEvent(action, dataid) {
             EntityName: 'CURRENCY'
         };
         $.ajax({
-            url: baseUrl1 +'/api/v1/Setup/EntityValue/GetByEntityName',
+            url: API_BASE_URL + 'Setup/EntityValue/GetByEntityName',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(newDataCollection),
