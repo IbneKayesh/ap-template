@@ -1,5 +1,3 @@
-const API_BASE_URL = 'http://localhost:5092/api/v1';
-
 // Define Page Routes
 Router.add("/business", () => {
     RenderPage("pages/company/business.html", "pages/company/business.js");
@@ -7,15 +5,17 @@ Router.add("/business", () => {
 
 Router.add("/", () => {
     RenderPage("home.html", "home.js");
-}, true); // Requires auth
+}, true);
 
 Router.add("/div-sample", () => {
     RenderPage("pages/sample/div-page.html", "");
 }, false); // No auth required
 
-// Router.add("/login", () => {
-//     RenderPage("login.html", "login.js");
-// });
+Router.add("/api-test", () => {
+    RenderPage("pages/apiTest/api-test.html", "pages/apiTest/api-test.js");
+}, false);
+
+
 
 
 

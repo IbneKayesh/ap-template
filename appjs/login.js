@@ -177,9 +177,13 @@ function PageGoActionEvent(action, dataid) {
                 //     }
                 // });
 
-                // Save user state to globalStorage            
+                //Save user state to globalStorage            
                 State.GlobalSet(USER_LOGIN_STATE, validationSummary.newDataCollection);
-                State.GlobalSet(API_AUTH_TOKEN,'auth-token');
+                State.GlobalSet(API_AUTH_TOKEN, 'auth-token');
+
+                //user defined keys
+                State.GlobalSet(KEY_USER_ID,'kayesh');
+                State.GlobalSet(KEY_USER_KEY,'asp.net');
                 // Redirect to the list page
                 window.location = "/";
                 //window.location.reload();
