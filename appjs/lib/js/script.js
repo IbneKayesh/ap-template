@@ -258,8 +258,15 @@ function GetQueryParam(param) {
 // Utility function to validate fields
 function ValidateInputField(fieldSelector, condition, errorMessage) {
     var field = $(fieldSelector);
-    var value = field.val().trim();
-    field.removeClass('input-error'); // Remove previous error class
+    var value;
+    if (!field.is('select')) {
+        //for select option
+        value = field.val().trim();
+    } else {
+        value = field.val();
+    }
+    // Remove previous error class
+    field.removeClass('input-error');
 
     if (condition(value)) {
         field.addClass('input-error');
@@ -267,4 +274,10 @@ function ValidateInputField(fieldSelector, condition, errorMessage) {
         return false;
     }
     return true;
+}
+
+function ClearInputFieldError(divSelector) {
+    $('#' + divSelector).find('input, select').each(function() {
+        $(this).removeClass('input-error');
+    });
 }

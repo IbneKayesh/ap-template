@@ -44,6 +44,8 @@ function PageGoClear(action) {
             $('#MaxEmployee').val(1);
             $('#MaxSalary').val(1);
             $('#IsActive').prop('checked', false);
+            ClearInputFieldError(action);
+                        
             break;
 
         default:
@@ -234,7 +236,7 @@ function PageGoActionEvent(action, dataid) {
                     }
                 },
                 (xhr, status, error) => {
-                    Popup.Show("error", status + ", Error: " + error);
+                    Popup.Show("error", `Status: ${xhr.status} - ${xhr.errorMessage}`);
                 },
                 () => {
                     //do complete action
@@ -260,7 +262,7 @@ function PageGoActionEvent(action, dataid) {
                     }
                 },
                 (xhr, status, error) => {
-                    Popup.Show("error", status + ", Error: " + error);
+                    Popup.Show("error", `Status: ${xhr.status} - ${xhr.errorMessage}`);
                 },
                 () => {
                     //do complete action
@@ -285,7 +287,7 @@ function PageGoActionEvent(action, dataid) {
                     }
                 },
                 (xhr, status, error) => {
-                    Popup.Show("error", status + ", Error: " + error);
+                    Popup.Show("error", `Status: ${xhr.status} - ${xhr.errorMessage}`);
                 },
                 () => {
                     WorkInProgress.Hide();
@@ -313,7 +315,7 @@ function PageGoActionEvent(action, dataid) {
                         }
                     },
                     (xhr, status, error) => {
-                        Popup.Show("error", status + ", Error: " + error);
+                        Popup.Show("error", `Status: ${xhr.status} - ${xhr.errorMessage}`);
                     },
                     () => {
                         WorkInProgress.Hide();
@@ -343,7 +345,7 @@ function PageGoActionEvent(action, dataid) {
                     }
                 },
                 (xhr, status, error) => {
-                    Popup.Show("error", status + ", Error: " + error);
+                    Popup.Show("error", `Status: ${xhr.status} - ${xhr.errorMessage}`);
                 },
                 () => {
                     WorkInProgress.Hide();
@@ -368,7 +370,7 @@ function PageGoActionEvent(action, dataid) {
                     }
                 },
                 (xhr, status, error) => {
-                    Popup.Show("error", status + ", Error: " + error);
+                    Popup.Show("error", `Status: ${xhr.status} - ${xhr.errorMessage}`);
                 },
                 () => {
                     WorkInProgress.Hide();

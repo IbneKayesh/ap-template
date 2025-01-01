@@ -907,6 +907,12 @@ textarea {
     color: #333;
 }
 
+input.input-error,
+select.input-error,
+textarea.input-error {
+    border: 1px dashed red;
+}
+
 
 /**** button styles ****/
 .button {

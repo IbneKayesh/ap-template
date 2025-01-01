@@ -1,6 +1,7 @@
 const loginState = "loginState";
 
 const State = {
+    
     storage: {},
     
     PageSet(key, value) {
