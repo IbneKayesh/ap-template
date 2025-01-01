@@ -45,7 +45,7 @@ function PageGoClear(action) {
             $('#MaxSalary').val(1);
             $('#IsActive').prop('checked', false);
             ClearInputFieldError(action);
-                        
+
             break;
 
         default:
@@ -194,7 +194,7 @@ function GenerateTableHTML(action, dynData) {
 }
 
 //function: 5
-function PageGoNext(action, dataid) {
+function PageGoNext2(action, dataid) {
     switch (action) {
         case 'div-page-list-business':
             $('#div-page-entry-business').addClass('d-none');
@@ -208,6 +208,27 @@ function PageGoNext(action, dataid) {
             $('#btn-back-to-entry').addClass('d-none');
             $('#div-page-list-business').addClass('d-none');
 
+            break;
+
+        default:
+            console.log('Invalid action');
+            break;
+    }
+}
+function PageGoNext(action, dataid) {
+    switch (action) {
+        case 'div-page-list-business':
+            $('#div-page-entry-business').fadeOut(180, function () {
+                $('#btn-back-to-entry').fadeIn(180);
+                $('#div-page-list-business').fadeIn(180);
+            });
+            break;
+
+        case 'div-page-entry-business':
+            $('#div-page-list-business').fadeOut(180, function () {
+                $('#btn-back-to-entry').fadeOut(180);
+                $('#div-page-entry-business').fadeIn(180);
+            });
             break;
 
         default:
@@ -391,7 +412,9 @@ function PageGoShowModal(action, dataid) {
             Popup.Confirm("Are you sure you want to delete?", function () { PageGoActionEvent(action, dataid) }, function () { });
 
             break;
-
+        case 'yes-no':
+            Popup.Confirm("Are you sure you want to delete?", function () { }, function () { });
+            break;
         default:
             console.log('Invalid action');
             break;

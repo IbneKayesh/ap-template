@@ -277,7 +277,7 @@ function ValidateInputField(fieldSelector, condition, errorMessage) {
 }
 
 function ClearInputFieldError(divSelector) {
-    $('#' + divSelector).find('input, select').each(function() {
+    $('#' + divSelector).find('input, select, textarea').each(function() {
         $(this).removeClass('input-error');
     });
 }

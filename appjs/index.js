@@ -2,22 +2,21 @@ const API_BASE_URL = 'http://localhost:5092/api/v1';
 
 // Define Page Routes
 Router.add("/business", () => {
-    loadPage("pages/company/business.html", "pages/company/business.js");
+    RenderPage("pages/company/business.html", "pages/company/business.js");
 });
 Router.add("/", () => {
-    loadPage("home.html", "home.js");
+    RenderPage("home.html", "home.js");
 });
 Router.add("/login", () => {
-    loadPage("login.html", "login.js");
+    RenderPage("login.html", "login.js");
 });
-// Utility to load HTML and JS files dynamically
-function loadPage(htmlPath, jsPath) {
-    $("#app").load(htmlPath, () => {
-        if (jsPath) {
-            $.getScript(jsPath);
-        }
-    });
-}
+
+Router.add("/div-sample", () => {
+    RenderPage("pages/sample/div-page.html", "");
+});
+
+
+
 // Initialize Framework
 $(document).ready(() => Framework.init());
 

@@ -8,7 +8,7 @@
 
 /**** dismissable popup notification styles ****/
 
-#notification-container {
+ #notification-container {
     position: fixed;
     top: 30px;
     right: 20px;
@@ -23,61 +23,56 @@
     border-radius: 3px;
     color: #ffff;
     transition: all .3s ease-in-out;
-    box-shadow: 0 3px 10px #0003;
-    background-color: #343a40;
-    border: 2.5px dashed transparent
+    box-shadow: 0 3px 10px #0003;    
+    border: 2.5px dashed transparent;
+    opacity: 0.2;
 }
 
     .notification.success {
-        border-color: #4CAF50; /* Green */
+        background-color: #4CAF50;
     }
 
     .notification.error {
-        border-color: #F44336; /* Red */
+        background-color: #F44336;
     }
 
-    .notification.info {
-        border-color: #2196F3; /* Blue */
+    .notification.info {        
+        background-color: #2196F3;
     }
 
     .notification.warn {
-        border-color: #FF9800; /* Orange */
+        background-color: #FF9800;
     }
 
     .notification.success .icon-button {
-        background-color: #4CAF50; /* Green button for success */
+        background-color: #4CAF50;
     }
 
     .notification.error .icon-button {
-        background-color: #F44336; /* Red button for error */
+        background-color: #F44336;
     }
 
     .notification.info .icon-button {
-        background-color: #2196F3; /* Blue button for info */
+        background-color: #2196F3; 
     }
 
     .notification.warn .icon-button {
-        background-color: #FF9800; /* Orange button for warning */
+        background-color: #FF9800; 
     }
 
     .notification .icon-button {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 15px;
-        height: 15px;
-        border-radius: 45%;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
         color: #fff;
         margin-right: 10px
-    }
-
+    } 
+    
+    
 /**** confirm popup notification with confirmation styles ****/
-/* .confirm-dialog {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        } */
 
 .confirm-dialog p {
     margin: 0 0 15px;

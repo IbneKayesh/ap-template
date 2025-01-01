@@ -20,3 +20,12 @@ const Router = {
         }
     }
 };
+
+// Utility to load HTML and JS files dynamically
+function RenderPage(htmlPath, jsPath) {
+    $("#app").load(htmlPath, () => {
+        if (jsPath) {
+            $.getScript(jsPath);
+        }
+    });
+}

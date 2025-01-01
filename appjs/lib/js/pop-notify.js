@@ -16,16 +16,24 @@ const Popup = {
             type === 'error' ? 'fas fa-times' :
                 type === 'info' ? 'fas fa-info-circle' :
                     type === 'warn' ? 'fas fa-exclamation-triangle' : '';
+                    
 
-        const notification = $('<div class="notification" onclick="ClosePopup(this);"></div>')
+    const notification = $('<div class="notification" onclick="ClosePopup(this);"></div>')
             .addClass(type)
             .html(`<i class="${icon} icon-button"></i> ${message}`)
             .appendTo(notificationContainer)
-            .fadeIn(300)
+            .css({ opacity: 0, visibility: 'hidden', transform: 'translateY(40px)' }) // Start with opacity 0, hidden, and slightly offset
+            .fadeIn(200, function() {
+                $(this).css({ 
+                    opacity: 1, 
+                    visibility: 'visible', 
+                    transform: 'translateY(0)' // Slide in effect with no offset
+                }); 
+            })
             .delay(4000)
-            .fadeOut(300, function () {
+            .fadeOut(200, function() {
                 $(this).remove();
-            });
+            }); 
     },
     Confirm: function (message, yesCallback, noCallback) {
         // Show the overlay
@@ -67,5 +75,6 @@ const Popup = {
 };
 //Click notification to close immediately
 function ClosePopup(e) {
-    $(e).remove();
+    //$(e).remove();
+    $(e).remove(); // Slide out and fade out
 }
