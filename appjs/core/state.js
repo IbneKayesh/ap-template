@@ -1,5 +1,3 @@
-const loginState = "loginState";
-
 const State = {
     
     storage: {},

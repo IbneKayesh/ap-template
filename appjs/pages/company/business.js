@@ -1,27 +1,25 @@
 //function: 0
 $(document).ready(function () {
-    // Check if the user is already logged in
-    const userGlobalState = State.GlobalGet(loginState);
-    if (!userGlobalState) {
-        // Redirect to list page if already logged in
-        //window.location = "/login.html";
-        window.location.hash = "#/login";
-    } else {
-        $('#table-list-business').ToTable();
+    // // Check if the user is already logged in
+    // const userGlobalState = State.GlobalGet(USER_LOGIN_STATE);
+    // if (!userGlobalState) {
+    //     // Redirect to list page if already logged in
+    //     window.location = "/login.html";
+    // } 
+    $('#table-list-business').ToTable();
 
-        WorkInProgress.Show('Getting ready...');
-        $.when(PageGoActionEvent('CountryId', '0'), PageGoActionEvent('CurrencyId', '0'))
-            .then(function () {
-                //do something
-            })
-            .fail(function () {
-                // At least one AJAX call failed
-                Popup.Show("error", "Error loading data.");
-            })
-            .always(function () {
-                WorkInProgress.Hide();
-            });
-    }
+    WorkInProgress.Show('Getting ready...');
+    $.when(PageGoActionEvent('CountryId', '0'), PageGoActionEvent('CurrencyId', '0'))
+        .then(function () {
+            //do something
+        })
+        .fail(function () {
+            // At least one AJAX call failed
+            Popup.Show("error", "Error loading data.");
+        })
+        .always(function () {
+            WorkInProgress.Hide();
+        });
 });
 
 

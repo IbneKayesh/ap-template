@@ -1,7 +1,7 @@
 //function: 0
 $(document).ready(function () {
     // Check if the user is already logged in
-    const userGlobalState = State.GlobalGet(loginState);
+    const userGlobalState = State.GlobalGet(USER_LOGIN_STATE);
     if (userGlobalState) {
         // Redirect to list page if already logged in
         window.location = "/";
@@ -178,7 +178,8 @@ function PageGoActionEvent(action, dataid) {
                 // });
 
                 // Save user state to globalStorage            
-                State.GlobalSet(loginState, validationSummary.newDataCollection);
+                State.GlobalSet(USER_LOGIN_STATE, validationSummary.newDataCollection);
+                State.GlobalSet(API_AUTH_TOKEN,'auth-token');
                 // Redirect to the list page
                 window.location = "/";
                 //window.location.reload();
