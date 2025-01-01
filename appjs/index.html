@@ -7,6 +7,18 @@
     <meta name="author" content="Md. Ibne Kayesh" />
     <meta name="description" content="Apprentice Programmer" />
     <title>apjs framework</title>
+    <!--template-->
+    <link href="lib/css/style.css" rel="stylesheet" />
+    <link href="lib/css/pop-notify.css" rel="stylesheet" />
+    <link href="lib/fontawesome-free-6.6.0-web/css/all.min.css" rel="stylesheet" />
+    <!--jQuery-->
+    <script src="lib/jquery/jquery-3.6.0.min.js"></script>
+    <!--framework-->
+    <script src="core/router.js"></script>
+    <script src="core/state.js"></script>
+    <script src="core/component.js"></script>
+    <script src="core/ajax.js"></script>
+    <script src="core/framework.js"></script>
 </head>
 
 <body>
@@ -19,18 +31,17 @@
         </div>
         <!--menu and dropdown menu-->
         <div class="navbar-menu">
+            <a href="#/">Home</a>
             <div class="navbar-dropdown">
-                <span>Dropdown <i class="fas fa-caret-down"></i></span>
+                <span>Elements <i class="fas fa-caret-down"></i></span>
                 <div class="navbar-dropdown-content">
                     <ul class="navbar-menu-items">
-                        <li><a href="#">Option 1</a></li>
-                        <li><a href="#">Option 2</a></li>
+                        <li><a href="#/input">Input</a></li>
+                        <li><a href="#">Form</a></li>
                     </ul>
                 </div>
             </div>
-            <a href="#/list">View List</a>
             <a href="#/business">Business</a>
-            <a href="#/">Home</a>
         </div>
         <!--logged in user-->
         <div class="navbar-user">
@@ -44,7 +55,7 @@
                 <p class="navbar-user-designation">Designation</p>
                 <div class="user-dropdown-footer">
                     <button class="button change-password">Change Password</button>
-                    <button class="button logout" onclick="Logout();">Logout</button>
+                    <button class="button logout" onclick="Logout()">Logout</button>
                 </div>
             </div>
 
@@ -78,43 +89,14 @@
             </div>
         </div>
     </div>
+
     <!--template-->
-    <script src="lib/jquery/js.cookie.min.js"></script>
     <script src="lib/js/script.js"></script>
-    <script src="lib/js/pop-notify.js"></script>
     <script src="lib/js/ap-data-table.js"></script>
     <script src="lib/js/search-grid.js"></script>
-    <!--framework-->
-    <script>
-
-        
-        
-
-
-        Router.add("/list", () => {
-            loadPage("pages/list.html", "pages/list.js");
-        });
-
-  
-
-        $(document).ready(() => {
-            const userState = State.GlobalGet("loginhtml");
-            if (userState) {
-                var userData = JSON.parse(userState);
-                $('.navbar-user-name').text(userData.username);
-                $('.navbar-user-designation').text(userData.designation);
-            } else {
-                $('.navbar-user-name').text('User Name');
-                $('.navbar-user-designation').text('Designation');
-            }
-        });
-
-
-        //logout
-        function Logout() {
-       
-        }
-    </script>
+    <script src="lib/js/pop-notify.js"></script>
+    
+    <script src="index.js"></script>
 </body>
 
 </html>

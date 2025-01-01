@@ -1,6 +1,6 @@
 const API = {
-  async  get(url, success, error, complete) {
-     await   $.ajax({
+    async get(url, success, error, complete) {
+        await $.ajax({
             url,
             method: "GET",
             success,
@@ -9,8 +9,8 @@ const API = {
         });
     },
 
- async   post(url, data, success, error, complete) {
-     await   $.ajax({
+    async post(url, data, success, error, complete) {
+        await $.ajax({
             url,
             method: "POST",
             contentType: "application/json",

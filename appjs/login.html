@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Md. Ibne Kayesh" />
     <meta name="description" content="jQuery based frontend web application is ap.js" />
-    <title>Login Page</title>
+    <title>Login</title>
     <!-- page script -->
     <link href="login.css" rel="stylesheet" />
     <link href="lib/css/pop-notify.css" rel="stylesheet" />
@@ -30,7 +30,7 @@
                         <input type="password" id="login-pass" placeholder="Password" required autocomplete="on">
                         <span class="error-message" id="login-pass-error"></span>
                     </div>
-                    <button id="btn-UserLogin" type="button" onclick="PageGoActionEvent('user-login','0')">Login</button>
+                    <button id="btn-UserLogin" type="button" onclick="PageGoActionEvent('div-page-login','0')">Login</button>
                     <div class="links">
                         <a href="#" onclick="PageGoNext('div-page-register','0')">Create Account</a>
                         <a href="#" onclick="PageGoNext('div-page-forgot','0')">Forgot Password?</a>
@@ -52,7 +52,7 @@
                         <input type="password" id="register-pass" placeholder="New Password" required autocomplete="on">
                         <span class="error-message" id="register-pass-error"></span>
                     </div>
-                    <button id="btn-SaveNewVendorUser" type="button" onclick="ActionEvent('user-register','0');">Register</button>
+                    <button id="btn-SaveNewVendorUser" type="button" onclick="PageGoActionEvent('user-register','0');">Register</button>
                     <div class="links">
                         <a href="#" onclick="PageGoNext('div-page-login','0')">Already have an account?</a>
                         <a href="#" onclick="PageGoNext('div-page-otp','0')">OTP Verification?</a>
@@ -65,7 +65,7 @@
                     <div class="input-container">
                         <input type="email" id="forgot-register-email" placeholder="Email" required>
                     </div>
-                    <button type="button">Recover Password</button>
+                    <button type="button" onclick="PageGoActionEvent('div-page-forgot','0');">Recover Password</button>
                     <div class="links">
                         <a href="#" onclick="PageGoNext('div-page-register','0')">Create Account</a>
                         <a href="#" onclick="PageGoNext('div-page-login','0')">Already have an account?</a>
@@ -83,7 +83,7 @@
                         <input type="text" id="verify-otp-no" placeholder="Enter OTP" required>
                         <span class="error-message" id="verify-otp-no-error"></span>
                     </div>
-                    <button id="btn-VerifyOTP" type="button" onclick="ActionEvent('verify-otp','0');">Verify</button>
+                    <button id="btn-VerifyOTP" type="button" onclick="PageGoActionEvent('verify-otp','0');">Verify</button>
                     <div class="links">
                         <a href="#" onclick="PageGoNext('div-page-login','0')">Already have an account?</a>
                         <a href="#" onclick="PageGoNext('div-page-otp-resend','0')">Resend OTP</a>
@@ -97,7 +97,7 @@
                         <input type="email" id="otp-register-email" placeholder="Email" required>
                         <span class="error-message" id="otp-register-email-error"></span>
                     </div>
-                    <button id="btn-resend-otp" type="button" onclick="ActionEvent('resend-otp','0');">Resend OTP</button>
+                    <button id="btn-resend-otp" type="button" onclick="PageGoActionEvent('resend-otp','0');">Resend OTP</button>
                     <div class="links">
                         <a href="#" onclick="PageGoNext('div-page-register','0')">Create Account</a>
                         <a href="#" onclick="PageGoNext('div-page-login','0')">Already have an account?</a>

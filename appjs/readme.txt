@@ -5,3 +5,15 @@
     Date: Oct - 2024
     Inspired from Bootstrap, Tailwind CSS and jQuery
  ***/
+
+ Login page
+ - login.html
+ - login.js
+
+ Layout page
+ - index.html
+ - index.js
+
+ Home page
+ - home.html
+ - home.js

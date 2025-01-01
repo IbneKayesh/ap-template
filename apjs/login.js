@@ -127,19 +127,12 @@ function PageGoActionEvent(action, dataid) {
             // Redirect to the list page
             window.location = "/";
             //window.location.reload();
-            console.log('a');
         } else {
             Popup.Show("error", "Request submission is failed, Fix errors and try again!");
         }
     }
 }
 
-//function: 7
-function PageGoShowModal(action, dataid) {
-    if (action === 'home-page') {
-
-    }
-}
 
 function ValidatePageInput(actionname) {
     let isValid = true;
@@ -233,9 +226,6 @@ function ValidatePageInput(actionname) {
     return { isValid, newDataCollection };
 }
 
-function FillPageInput(action, dynData) {
-
-}
 
 function ClearDivPage(action) {
     if (action === 'page-register') {
@@ -253,9 +243,7 @@ function ClearDivPage(action) {
     }
 }
 
-function NextView(action, dataid) {
 
-}
 
 function ActionEvent(action, dataid) {
     if (action === 'user-register') {
@@ -358,17 +346,6 @@ function ActionEvent(action, dataid) {
     }
 }
 
-function PostbackApiCall(action, dataCollection) {
-
-}
-
-function GenerateTableHTML(action, dynData) {
-
-}
-
-function ShowModalView(action, dataid) {
-
-}
 
 
 
@@ -378,21 +355,3 @@ function ShowModalView(action, dataid) {
 
 
 
-
-
-
-
-
-
-
-
-function showError(input, errorElement, message) {
-    input.parentElement.classList.add('invalid');
-    errorElement.textContent = message;
-    errorElement.style.display = 'block';
-}
-function clearError(input, errorElement) {
-    input.parentElement.classList.remove('invalid');
-    errorElement.textContent = '';
-    errorElement.style.display = 'none';
-}
