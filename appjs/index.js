@@ -15,6 +15,9 @@ Router.add("/api-test", () => {
     RenderPage("pages/apiTest/api-test.html", "pages/apiTest/api-test.js");
 }, false);
 
+Router.add("/customer-order", () => {
+    RenderPage("pages/customer-order/order.html", "pages/customer-order/order.js");
+}, false);
 
 
 

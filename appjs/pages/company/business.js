@@ -244,7 +244,7 @@ function PageGoActionEvent(action, dataid) {
             };
             API.post(
                 `${API_BASE_URL}/Setup/EntityValue/GetByEntityName`,
-                JSON.stringify(newDataCollection),
+                newDataCollection,
                 (response) => {
                     var parsedData = JSON.parse(response);
                     var dynData = parsedData.DynamicData;
@@ -270,7 +270,7 @@ function PageGoActionEvent(action, dataid) {
             };
             API.post(
                 `${API_BASE_URL}/Setup/EntityValue/GetByEntityName`,
-                JSON.stringify(newDataCollection),
+                newDataCollection,
                 (response) => {
                     var parsedData = JSON.parse(response);
                     var dynData = parsedData.DynamicData;
@@ -294,7 +294,7 @@ function PageGoActionEvent(action, dataid) {
             WorkInProgress.Show('Getting ready...');
             API.post(
                 `${API_BASE_URL}/Company/Business/GetAll`,
-                JSON.stringify(newDataCollection),
+                newDataCollection,
                 (response) => {
                     var parsedData = JSON.parse(response);
                     var dynData = parsedData.DynamicData;
@@ -321,7 +321,7 @@ function PageGoActionEvent(action, dataid) {
                 WorkInProgress.Show('Getting ready....');
                 API.post(
                     `${API_BASE_URL}/Company/Business/CreateUpdate`,
-                    JSON.stringify(validationSummary.newDataCollection),
+                    validationSummary.newDataCollection,
                     (response) => {
                         var parsedData = JSON.parse(response);
                         var dynData = parsedData.DynamicData;
@@ -354,7 +354,7 @@ function PageGoActionEvent(action, dataid) {
             WorkInProgress.Show('Getting ready...');
             API.post(
                 `${API_BASE_URL}/Company/Business/GetById`,
-                JSON.stringify(newDataCollection),
+                newDataCollection,
                 (response) => {
                     var parsedData = JSON.parse(response);
                     if (parsedData.SUCCESS && parsedData.ROWS > 0) {
@@ -379,7 +379,7 @@ function PageGoActionEvent(action, dataid) {
             WorkInProgress.Show('Getting ready...');
             API.post(
                 `${API_BASE_URL}/Company/Business/DeleteById`,
-                JSON.stringify(newDataCollection),
+                newDataCollection,
                 (response) => {
                     var parsedData = JSON.parse(response);
                     if (parsedData.SUCCESS) {

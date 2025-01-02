@@ -5,10 +5,6 @@ const Router = {
         window.addEventListener("hashchange", this.handleRoute.bind(this));
         this.handleRoute();
     },
-
-    // add(route, handler) {
-    //     this.routes[route] = handler;
-    // },
     add(route, handler, requiresAuth = true) {
         this.routes[route] = async () => {
             if (requiresAuth) {
@@ -34,11 +30,34 @@ const Router = {
     }
 };
 
-// Utility to load HTML and JS files dynamically
 function RenderPage(htmlPath, jsPath) {
     $("#app").load(htmlPath, () => {
         if (jsPath) {
             $.getScript(jsPath);
         }
     });
+}
+
+function RenderComponent(element) {
+    const htmlPath = element.getAttribute('data-html');
+    const jsPath = element.getAttribute('data-js');
+    const data = element.getAttribute('data-items');
+    fetch(htmlPath)
+        .then(response => response.text())
+        .then(html => {
+            element.innerHTML = html;
+            if (jsPath) loadComponentScript(jsPath, data);
+        })
+        .catch(err => console.error(`Error loading HTML from ${htmlPath}:`, err));
+}
+
+function loadComponentScript(jsPath, data) {
+    const relativePath = jsPath.startsWith('/') ? jsPath : `./${jsPath}`;
+    import(relativePath)
+        .then(module => {
+            if (module && module.init) {
+                module.init(data);
+            }
+        })
+        .catch(err => console.error(`Error loading JS from ${jsPath}:`, err));
 }

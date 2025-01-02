@@ -11,7 +11,7 @@ const API = {
 
     async post(url, data, success, error, complete) {
         const authToken = State.GlobalGet(API_AUTH_TOKEN);
-        const headers = authToken ? {
+        const headersData = authToken ? {
             'Authorization': `Bearer ${authToken}`,
             'ap-user-id': State.GlobalGet(KEY_USER_ID),
             'ap-user-key': State.GlobalGet(KEY_USER_KEY),
@@ -24,8 +24,8 @@ const API = {
                 url,
                 method: "POST",
                 contentType: "application/json",
-                headers,
-                data,
+                headers : headersData,
+                data : JSON.stringify(data),
                 success,
                 error,
                 complete,

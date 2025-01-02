@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="card w-100">
+        <div class="card-header">
+            <div class="card-title">Customer Order</div>
+            <div class="card-tools">
+                <button type="button" class="button" title="More options">...</button>
+                <div class="dropdown">
+                    <button type="button" class="button w-100 mt-1"><i class="fas fa-question-circle"></i> About
+                        Page</button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div id="order-master" class="box-bordered mt-7">
+                Order Master
+            </div>
+            <!-- order.html -->
+            <div data-page="/customer-order">
+                <ap-items data-html="pages/customer-order/order-child/order-items.html"
+                    data-js="/pages/customer-order/order-child/order-items.js"
+                    data-items="{'id': 1, 'name': 'mouse', 'price': 50.45}">
+                </ap-items>
+
+                <ap-payment data-html="pages/customer-order/order-child/order-payment.html"
+                    data-js="/pages/customer-order/order-child/order-payment.js">
+                </ap-payment>
+
+                <ap-shipment data-html="pages/customer-order/order-child/order-shipment.html"
+                    data-js="/pages/customer-order/order-child/order-shipment.js">
+                </ap-shipment>
+            </div>
+
+        </div>
+    </div>
+</div>
