@@ -1,0 +1,7 @@
+﻿[
+  {
+    "AppName": "PointOfSalesApp",
+    "Data": "PointOfSalesApp.v1.UserManagement.Data",
+    "User": "PointOfSalesApp.v1.UserManagement.Users"
+  }
+]

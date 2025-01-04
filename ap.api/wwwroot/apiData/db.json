@@ -1,0 +1,11 @@
+﻿[
+  {
+    "DB_TYPE": "MSSQL",
+    "ConnectionStrings": [
+      {
+        "NAME": "WETEAM",
+        "CONECTION": "Data Source=DESKTOP-9PB4FL0\\SQLEXPRESS; Initial Catalog=pos; User Id=sa; Password=123; TrustServerCertificate=True;Connect Timeout=30"
+      }
+    ]
+  }
+]

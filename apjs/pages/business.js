@@ -27,21 +27,7 @@ function PageGoValidateInput(action) {
 //function: 3
 function PageGoFillInput(action, dynData) {
     if (action === 'div-page-edit-business') {
-        $('#Id').val(dynData.Id);
-        $('#BusinessLogo').val(dynData.BusinessLogo);
-        $('#BusinessName').val(dynData.BusinessName);
-        $('#ShortName').val(dynData.ShortName);
-        $('#OfficeAddress').val(dynData.OfficeAddress);
-        $('#ContactName').val(dynData.ContactName);
-        $('#ContactNo').val(dynData.ContactNo);
-        $('#EmailAddress').val(dynData.EmailAddress);
-        $('#BIN').val(dynData.BIN);
-        $('#TaxVATNo').val(dynData.TaxVATNo);
-        $('#CountryId').val(dynData.CountryId);
-        $('#CurrencyId').val(dynData.CurrencyId);
-        $('#MaxEmployee').val(dynData.MaxEmployee);
-        $('#MaxSalary').val(dynData.MaxSalary);
-        $('#IsActive').prop('checked', dynData.IsActive);
+
     }
 }
 
@@ -69,9 +55,6 @@ function PageGoActionEvent(action, dataid) {
 
 
     else if (action === 'div-page-edit-business') {
-        var newDataCollection = {
-            Id: $(dataid).data('id')
-        };
         WorkInProgress.Show('Getting ready....');
         $.ajax({
             url: API_BASE_URL + 'Company/Business/GetById',
@@ -132,6 +115,6 @@ function PageGoActionEvent(action, dataid) {
 //function: 7
 function PageGoShowModal(action, dataid) {
     if (action === 'div-page-delete-business') {
-        Popup.Confirm("Are you sure you want to delete?", function () { PageGoActionEvent('div-page-delete-business', dataid) }, function () { });
+        
     }
 }
