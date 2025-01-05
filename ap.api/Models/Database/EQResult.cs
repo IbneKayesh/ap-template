@@ -1,11 +1,11 @@
-﻿namespace ap.api.Models
+﻿namespace ap.api.Models.Database
 {
     public class EQResult
     {
         public bool SUCCESS { get; set; } = true;
         public string MESSAGE { get; set; } = "OK";
         public int ROWS { get; set; } = 0;
-        public dynamic DynamicData { get; set; } = "DynamicData";
-        public string DynamicJson { get; set; } = "[]";
+        public string NAME { get; set; } = "Table 1";
+        public DataTable DynamicData { get; set; } = new DataTable();
     }
 }

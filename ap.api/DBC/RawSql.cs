@@ -1,16 +1,11 @@
-﻿using ap.api.Models;
-using Microsoft.Data.SqlClient;
-//using Newtonsoft.Json;
-using System.Data;
-using System.Text.Json;
-
-namespace ap.api.DBC
+﻿namespace ap.api.DBC
 {
     public class RawSql
     {
-        public EQResult ExecuteSqlSp(string conStr, string sp_name, Dictionary<string, object> in_parameters)
+        public EQResult ExecuteSqlSp(string conStr, string sp_name, string table_name, Dictionary<string, object> in_parameters)
         {
             var result = new EQResult();
+            result.NAME = table_name;
             try
             {
                 using (var connection = new SqlConnection(conStr))
@@ -44,17 +39,17 @@ namespace ap.api.DBC
                         // Execute the command
                         using (var reader = command.ExecuteReader())
                         {
+                            var dataTable = new DataTable();
                             if (reader.HasRows)
                             {
-                                // Read the result into a DataTable
-                                var dataTable = new DataTable();
+                                // Read the result into a DataTable                              
                                 dataTable.Load(reader);
                                 result.DynamicData = dataTable;
                                 result.ROWS = dataTable.Rows.Count;
                             }
                             else
                             {
-                                result.DynamicData = null;
+                                result.DynamicData = dataTable;
                                 result.ROWS = -1;
                             }
                         }
@@ -73,23 +68,23 @@ namespace ap.api.DBC
                 result.MESSAGE = ex.Message;
             }
             //convert whole object to JSON
-            result.DynamicJson = JsonSerializeObject(result);
+            //result.DynamicJson = JsonSerializeObject(result);
             return result;
         }
 
-        //private string JsonSerializeObject(dynamic result)
-        //{
-          //  return JsonConvert.SerializeObject(result);
-        //}
-        private string JsonSerializeObject(object result)
+        private string JsonSerializeObject(dynamic result)
         {
-            var options = new JsonSerializerOptions
-            {
-                WriteIndented = true, // For pretty-printing
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase // For camelCase naming
-            };
-            return JsonSerializer.Serialize(result, options);
+            return JsonConvert.SerializeObject(result);
         }
+        //private string JsonSerializeObject(object result)
+        //{
+        //    var options = new JsonSerializerOptions
+        //    {
+        //        WriteIndented = true, // For pretty-printing
+        //        PropertyNamingPolicy = JsonNamingPolicy.CamelCase // For camelCase naming
+        //    };
+        //    return System.Text.Json.JsonSerializer.Serialize(result, options);
+        //}
 
     }
 }

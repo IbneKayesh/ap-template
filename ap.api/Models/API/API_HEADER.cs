@@ -1,4 +1,4 @@
-﻿namespace ap.api.Models
+﻿namespace ap.api.Models.API
 {
     public class API_HEADER
     {

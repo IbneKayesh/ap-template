@@ -162,8 +162,8 @@ function GenerateTableHTML(action, dynData) {
     switch (action) {
         case 'table-business':
             $('#table-business tbody').empty();
-            if (dynData !== null) {
-                dynData.forEach(function (item) {
+            if (dynData[0].ROWS > 0) {
+                dynData[0].DynamicData.forEach(function (item) {
                     var row = $('<tr></tr>');
                     row.append('<td>' + item.BusinessLogo + '</td>');
                     row.append('<td>' + item.BusinessName + '</td>');
@@ -198,7 +198,6 @@ function PageGoNext2(action, dataid) {
             $('#div-page-entry-business').addClass('d-none');
             $('#btn-back-to-entry').removeClass('d-none');
             $('#div-page-list-business').removeClass('d-none');
-            PageGoActionEvent(action, '0');
 
             break;
         case 'div-page-entry-business':
@@ -219,6 +218,7 @@ function PageGoNext(action, dataid) {
             $('#div-page-entry-business').fadeOut(180, function () {
                 $('#btn-back-to-entry').fadeIn(180);
                 $('#div-page-list-business').fadeIn(180);
+                PageGoActionEvent(action, '0');
             });
             break;
 
@@ -292,15 +292,25 @@ function PageGoActionEvent(action, dataid) {
 
         case 'div-page-list-business':
             WorkInProgress.Show('Getting ready...');
+            var newDataCollection = 
+                [
+                    {
+                        "RESOURCE": "Setup.select-business",
+                        "PARAMS": [
+                            {
+                                "PARAM": "Action",
+                                "VALUE": "GETALL"
+                            }
+                        ]
+                    }
+                ];
             API.post(
-                `${API_BASE_URL}/Company/Business/GetAll`,
+                `${API_BASE_URL}/Perform`,
                 newDataCollection,
                 (response) => {
                     var parsedData = JSON.parse(response);
-                    var dynData = parsedData.DynamicData;
-                    if (parsedData.SUCCESS) {
-                        GenerateTableHTML('table-business', dynData);//tableName, dataList
-                        //State.GlobalSet('table-business', dynData);//set global for further filter
+                    if (parsedData.SUCCESS && parsedData.TABLES > 0) {
+                        GenerateTableHTML('table-business', parsedData.EQResult);//tableName, dataList
                     } else {
                         Popup.Show("error", parsedData.MESSAGE);
                     }

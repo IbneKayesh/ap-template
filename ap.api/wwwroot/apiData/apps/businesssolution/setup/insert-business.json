@@ -1,0 +1,5 @@
+﻿{
+  "DB": "MSSQL.WETEAM",
+  "NAME": "Test",
+  "SQL": "SP_BUSINESS"
+}

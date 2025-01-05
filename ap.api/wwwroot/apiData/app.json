@@ -1,7 +1,17 @@
 ﻿[
   {
-    "AppName": "PointOfSalesApp",
-    "Data": "PointOfSalesApp.v1.UserManagement.Data",
-    "User": "PointOfSalesApp.v1.UserManagement.Users"
+    "Id": "a10",
+    "Name": "Business Solution",
+    "Data": "apps.businesssolution",
+    "MODULE": [
+      {
+        "Name": "Setup",
+        "Path": "setup"
+      },
+      {
+        "Name": "user",
+        "Path": "setup"
+      }
+    ]
   }
 ]

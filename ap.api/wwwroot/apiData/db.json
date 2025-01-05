@@ -4,7 +4,7 @@
     "ConnectionStrings": [
       {
         "NAME": "WETEAM",
-        "CONECTION": "Data Source=DESKTOP-9PB4FL0\\SQLEXPRESS; Initial Catalog=pos; User Id=sa; Password=123; TrustServerCertificate=True;Connect Timeout=30"
+        "CONECTION": "Data Source=IT-KAYESH\\SQLEXPRESS; Initial Catalog=bsDB; User Id=sa; Password=123; TrustServerCertificate=True;Connect Timeout=30"
       }
     ]
   }

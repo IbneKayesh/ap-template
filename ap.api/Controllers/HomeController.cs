@@ -1,7 +1,3 @@
-using ap.api.Models;
-using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-
 namespace ap.api.Controllers
 {
     public class HomeController : Controller

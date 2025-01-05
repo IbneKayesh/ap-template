@@ -179,7 +179,7 @@ function PageGoActionEvent(action, dataid) {
 
                 //Save user state to globalStorage            
                 State.GlobalSet(USER_LOGIN_STATE, validationSummary.newDataCollection);
-                State.GlobalSet(API_AUTH_TOKEN, 'auth-token');
+                State.GlobalSet(API_AUTH_APP_TOKEN, 'a10');
 
                 //user defined keys
                 State.GlobalSet(KEY_USER_ID,'kayesh');

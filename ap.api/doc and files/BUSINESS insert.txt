@@ -1,0 +1,27 @@
+[
+  {
+    "RESOURCE": "Setup.insert-business",
+    "PARAMS": [
+      {
+        "PARAM": "Action",
+        "VALUE": "INSERT"
+      },
+      {
+        "PARAM": "BusinessName",
+        "VALUE": "City Group"
+      },
+      {
+        "PARAM": "MaxEmployee",
+        "VALUE": "1"
+      },
+      {
+        "PARAM": "MaxSalary",
+        "VALUE": "1"
+      },
+      {
+        "PARAM": "UserId",
+        "VALUE": "Kayesh"
+      }
+    ]
+  }
+]

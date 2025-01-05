@@ -1,0 +1,11 @@
+[
+  {
+    "RESOURCE": "Setup.select-business",
+    "PARAMS": [
+      {
+        "PARAM": "Action",
+        "VALUE": "GETALL"
+      }
+    ]
+  }
+]

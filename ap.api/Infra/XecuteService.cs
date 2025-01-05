@@ -1,6 +1,4 @@
 ﻿using ap.api.DBC;
-using ap.api.Models;
-
 namespace ap.api.Infra
 {
     public class XecuteService
@@ -10,9 +8,9 @@ namespace ap.api.Infra
         {
             _rawSql = rawSql;
         }
-        public EQResult Execute(Dictionary<string, object> parameters, string connection)
+        public EQResult Execute(Dictionary<string, object> parameters, string spName, string tableName, string connection)
         {
-            return _rawSql.ExecuteSqlSp(connection, "SP_BRANCH", parameters);
+            return _rawSql.ExecuteSqlSp(connection, spName, tableName, parameters);
         }
 
     }

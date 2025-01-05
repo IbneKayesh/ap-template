@@ -10,15 +10,13 @@ const API = {
     },
 
     async post(url, data, success, error, complete) {
-        const authToken = State.GlobalGet(API_AUTH_TOKEN);
-        const headersData = authToken ? {
-            'Authorization': `Bearer ${authToken}`,
-            'ap-user-id': State.GlobalGet(KEY_USER_ID),
-            'ap-user-key': State.GlobalGet(KEY_USER_KEY),
+        const appToken = State.GlobalGet(API_AUTH_APP_TOKEN);
+        const headersData = appToken ? {
+            'app-token': `${appToken}`,
         } : {
-            'ap-user-id': State.GlobalGet(KEY_USER_ID),
-            'ap-user-key': State.GlobalGet(KEY_USER_KEY),
+            //default keys
         };
+        console.log(headersData)
         try {
             await $.ajax({
                 url,

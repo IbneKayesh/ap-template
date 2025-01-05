@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ap.api.Models
+namespace ap.api.Models.API
 {
     public class WAPI_BODY
     {
