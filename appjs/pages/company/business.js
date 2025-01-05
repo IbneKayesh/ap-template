@@ -8,18 +8,18 @@ $(document).ready(function () {
     // } 
     $('#table-list-business').ToTable();
 
-    WorkInProgress.Show('Getting ready...');
-    $.when(PageGoActionEvent('CountryId', '0'), PageGoActionEvent('CurrencyId', '0'))
-        .then(function () {
-            //do something
-        })
-        .fail(function () {
-            // At least one AJAX call failed
-            Popup.Show("error", "Error loading data.");
-        })
-        .always(function () {
-            WorkInProgress.Hide();
-        });
+    // WorkInProgress.Show('Getting ready...');
+    // $.when(PageGoActionEvent('CountryId', '0'), PageGoActionEvent('CurrencyId', '0'))
+    //     .then(function () {
+    //         //do something
+    //     })
+    //     .fail(function () {
+    //         // At least one AJAX call failed
+    //         Popup.Show("error", "Error loading data.");
+    //     })
+    //     .always(function () {
+    //         WorkInProgress.Hide();
+    //     });
 });
 
 
@@ -292,7 +292,7 @@ function PageGoActionEvent(action, dataid) {
 
         case 'div-page-list-business':
             WorkInProgress.Show('Getting ready...');
-            var newDataCollection = 
+            var newDataCollection =
                 [
                     {
                         "RESOURCE": "Setup.select-business",
@@ -304,8 +304,7 @@ function PageGoActionEvent(action, dataid) {
                         ]
                     }
                 ];
-            API.post(
-                `${API_BASE_URL}/Perform`,
+            API.postRequest(
                 newDataCollection,
                 (response) => {
                     var parsedData = JSON.parse(response);
