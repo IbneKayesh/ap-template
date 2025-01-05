@@ -3,8 +3,12 @@
     "DB_TYPE": "MSSQL",
     "ConnectionStrings": [
       {
-        "NAME": "WETEAM",
+        "NAME": "BS1",
         "CONECTION": "Data Source=IT-KAYESH\\SQLEXPRESS; Initial Catalog=bsDB; User Id=sa; Password=123; TrustServerCertificate=True;Connect Timeout=30"
+      },
+      {
+        "NAME": "BS",
+        "CONECTION": "Data Source=DESKTOP-5V892PN\\SQLEXPRESS; Initial Catalog=bsdb; User Id=sa; Password=123; TrustServerCertificate=True;Connect Timeout=30"
       }
     ]
   }

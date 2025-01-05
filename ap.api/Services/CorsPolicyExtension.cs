@@ -6,10 +6,11 @@ namespace ap.api.Services
     {
         public static IServiceCollection AddCorsPolicy(this IServiceCollection services, IConfiguration configuration)
         {
+            var allowedOrigins = configuration.GetSection("AllowedOrigins").Get<string[]>();
+
             // Step 1: Configure CORS to read from appsettings.json
             services.Configure<CorsOptions>(options =>
             {
-                var allowedOrigins = configuration.GetSection("AllowedOrigins").Get<string[]>();
                 if (allowedOrigins != null && allowedOrigins.Any())
                 {
                     options.AddPolicy("AllowSpecificOrigins", policy =>
@@ -25,7 +26,7 @@ namespace ap.api.Services
              {
                  options.AddPolicy("AllowSpecificOrigins", policy =>
                  {
-                     policy.WithOrigins(configuration.GetSection("AllowedOrigins").Get<string[]>())
+                     policy.WithOrigins(allowedOrigins)
                            .AllowAnyHeader()
                            .AllowAnyMethod();
                  });

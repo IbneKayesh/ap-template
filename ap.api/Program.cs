@@ -10,7 +10,12 @@ builder.Services.AddScoped<RawSql>();
 builder.Services.AddScoped<XecuteService>();
 
 // Step 1: Configure CORS to read from appsettings.json
-builder.Services.AddCorsPolicy(builder.Configuration);
+//builder.Services.AddCorsPolicy(builder.Configuration);
+//services cors
+builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
+{
+    builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+}));
 
 var app = builder.Build();
 
@@ -21,7 +26,10 @@ if (!app.Environment.IsDevelopment())
 }
 
 // Step 2: Use CORS middleware
-app.UseCors("AllowSpecificOrigins");
+//app.UseCors("AllowSpecificOrigins");
+
+
+app.UseCors("corsapp");
 
 app.UseStaticFiles();
 

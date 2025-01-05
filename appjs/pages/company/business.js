@@ -65,23 +65,78 @@ function PageGoValidateInput(action) {
             isValid &= ValidateInputField('#MaxEmployee', value => value === '' || parseInt(value) < 1, "Max Employee is required");
             isValid &= ValidateInputField('#MaxSalary', value => value === '' || parseInt(value) < 1, "Max Salary is required");
 
-            newDataCollection = {
-                Id: $('#Id').val().trim(),
-                BusinessLogo: $('#BusinessLogo').val().trim(),
-                BusinessName: $('#BusinessName').val().trim(),
-                ShortName: $('#ShortName').val().trim(),
-                OfficeAddress: $('#OfficeAddress').val().trim(),
-                ContactName: $('#ContactName').val().trim(),
-                ContactNo: $('#ContactNo').val().trim(),
-                EmailAddress: $('#EmailAddress').val().trim(),
-                BIN: $('#BIN').val().trim(),
-                TaxVATNo: $('#TaxVATNo').val().trim(),
-                CountryId: $('#CountryId').val(),
-                CurrencyId: $('#CurrencyId').val(),
-                MaxEmployee: $('#MaxEmployee').val(),
-                MaxSalary: $('#MaxSalary').val(),
-                IsActive: $('#IsActive').is(':checked') || false
-            };
+            newDataCollection =
+                [
+                    {
+                        "RESOURCE": "Setup.delete-business",
+                        "PARAMS": [
+                            {
+                                "PARAM": "Action",
+                                "VALUE": "INSERT"
+                            },
+                            {
+                                "PARAM": "Id",
+                                "VALUE": $('#Id').val().trim()
+                            },
+                            {
+                                "PARAM": "BusinessLogo",
+                                "VALUE": $('#BusinessLogo').val().trim()
+                            },
+                            {
+                                "PARAM": "BusinessName",
+                                "VALUE": $('#BusinessName').val().trim()
+                            },
+                            {
+                                "PARAM": "ShortName",
+                                "VALUE": $('#ShortName').val().trim()
+                            },
+                            {
+                                "PARAM": "OfficeAddress",
+                                "VALUE": $('#OfficeAddress').val().trim()
+                            },
+                            {
+                                "PARAM": "ContactName",
+                                "VALUE": $('#ContactName').val().trim()
+                            },
+                            {
+                                "PARAM": "ContactNo",
+                                "VALUE": $('#ContactNo').val().trim()
+                            },
+                            {
+                                "PARAM": "EmailAddress",
+                                "VALUE": $('#EmailAddress').val().trim()
+                            },
+                            {
+                                "PARAM": "BIN",
+                                "VALUE": $('#BIN').val().trim()
+                            },
+                            {
+                                "PARAM": "TaxVATNo",
+                                "VALUE": $('#TaxVATNo').val().trim()
+                            },
+                            {
+                                "PARAM": "CountryId",
+                                "VALUE": $('#CountryId').val()
+                            },
+                            {
+                                "PARAM": "CurrencyId",
+                                "VALUE": $('#CurrencyId').val()
+                            },
+                            {
+                                "PARAM": "MaxEmployee",
+                                "VALUE": $('#MaxEmployee').val()
+                            },
+                            {
+                                "PARAM": "MaxSalary",
+                                "VALUE": $('#MaxSalary').val()
+                            },
+                            {
+                                "PARAM": "IsActive",
+                                "VALUE": $('#IsActive').is(':checked') || false
+                            }
+                        ]
+                    }
+                ];
 
             break;
 
@@ -133,23 +188,28 @@ function PageGoFillInput(action, dynData) {
             break;
 
         case 'div-page-edit-business':
-            $('#Id').val(dynData.Id);
-            $('#BusinessLogo').val(dynData.BusinessLogo);
-            $('#BusinessName').val(dynData.BusinessName);
-            $('#ShortName').val(dynData.ShortName);
-            $('#OfficeAddress').val(dynData.OfficeAddress);
-            $('#ContactName').val(dynData.ContactName);
-            $('#ContactNo').val(dynData.ContactNo);
-            $('#EmailAddress').val(dynData.EmailAddress);
-            $('#BIN').val(dynData.BIN);
-            $('#TaxVATNo').val(dynData.TaxVATNo);
-            $('#CountryId').val(dynData.CountryId);
-            $('#CurrencyId').val(dynData.CurrencyId);
-            $('#MaxEmployee').val(dynData.MaxEmployee);
-            $('#MaxSalary').val(dynData.MaxSalary);
-            $('#IsActive').prop('checked', dynData.IsActive);
-            PageGoNext('div-page-entry-business', '0');
-
+            if (dynData[0].ROWS > 0) {
+                const dynDataItem = dynData[0].DynamicData[0];
+                $('#Id').val(dynDataItem.Id);
+                $('#BusinessLogo').val(dynDataItem.BusinessLogo);
+                $('#BusinessName').val(dynDataItem.BusinessName);
+                $('#ShortName').val(dynDataItem.ShortName);
+                $('#OfficeAddress').val(dynDataItem.OfficeAddress);
+                $('#ContactName').val(dynDataItem.ContactName);
+                $('#ContactNo').val(dynDataItem.ContactNo);
+                $('#EmailAddress').val(dynDataItem.EmailAddress);
+                $('#BIN').val(dynDataItem.BIN);
+                $('#TaxVATNo').val(dynDataItem.TaxVATNo);
+                $('#CountryId').val(dynDataItem.CountryId);
+                $('#CurrencyId').val(dynDataItem.CurrencyId);
+                $('#MaxEmployee').val(dynDataItem.MaxEmployee);
+                $('#MaxSalary').val(dynDataItem.MaxSalary);
+                $('#IsActive').prop('checked', dynDataItem.IsActive);
+                PageGoNext('div-page-entry-business', '0');
+            }
+            else {
+                console.log('No data found');
+            }
             break;
         default:
             console.log('Invalid action');
@@ -304,7 +364,8 @@ function PageGoActionEvent(action, dataid) {
                         ]
                     }
                 ];
-            API.postRequest(
+            API.post(
+                `${API_BASE_URL}/Perform`,
                 newDataCollection,
                 (response) => {
                     var parsedData = JSON.parse(response);
@@ -357,17 +418,31 @@ function PageGoActionEvent(action, dataid) {
             break;
 
         case 'div-page-edit-business':
-            var newDataCollection = {
-                Id: $(dataid).data('id')
-            };
+            var Id = $(dataid).data('id');
+            var newDataCollection =
+                [
+                    {
+                        "RESOURCE": "Setup.select-business",
+                        "PARAMS": [
+                            {
+                                "PARAM": "Action",
+                                "VALUE": "GETBYID"
+                            },
+                            {
+                                "PARAM": "Id",
+                                "VALUE": Id
+                            }
+                        ]
+                    }
+                ];
             WorkInProgress.Show('Getting ready...');
             API.post(
-                `${API_BASE_URL}/Company/Business/GetById`,
+                `${API_BASE_URL}/Perform`,
                 newDataCollection,
                 (response) => {
                     var parsedData = JSON.parse(response);
-                    if (parsedData.SUCCESS && parsedData.ROWS > 0) {
-                        PageGoFillInput('div-page-edit-business', parsedData.DynamicData[0]);//fill single row
+                    if (parsedData.SUCCESS && parsedData.TABLES > 0) {
+                        PageGoFillInput('div-page-edit-business', parsedData.EQResult);//fill single row
                     } else {
                         Popup.Show("error", parsedData.MESSAGE);
                     }
@@ -381,13 +456,28 @@ function PageGoActionEvent(action, dataid) {
             );
 
             break;
+
         case 'div-delete-business':
-            var newDataCollection = {
-                Id: $(dataid).data('id')
-            };
+            var Id = $(dataid).data('id');
+            var newDataCollection =
+                [
+                    {
+                        "RESOURCE": "Setup.delete-business",
+                        "PARAMS": [
+                            {
+                                "PARAM": "Action",
+                                "VALUE": "DELETE"
+                            },
+                            {
+                                "PARAM": "Id",
+                                "VALUE": Id
+                            }
+                        ]
+                    }
+                ];
             WorkInProgress.Show('Getting ready...');
             API.post(
-                `${API_BASE_URL}/Company/Business/DeleteById`,
+                `${API_BASE_URL}/Perform`,
                 newDataCollection,
                 (response) => {
                     var parsedData = JSON.parse(response);

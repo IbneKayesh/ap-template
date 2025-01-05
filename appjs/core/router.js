@@ -9,7 +9,7 @@ const Router = {
         this.routes[route] = async () => {
             if (requiresAuth) {
                 // Check if the user is authenticated before executing the handler
-                const userGlobalState = State.GlobalGet(USER_LOGIN_STATE);
+                const userGlobalState = State.GlobalGet(API_AUTH_APP_TOKEN);
                 if (!userGlobalState) {
                     window.location = "/login.html"; // Redirect to login if not authenticated
                     return;

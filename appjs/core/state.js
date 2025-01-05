@@ -22,6 +22,10 @@ const State = {
         return localStorage.getItem(key);
     },
 
+    GlobalGetValue(key) {
+        return localStorage.getItem(key)?.replace(/"/g, "");
+    },
+
     GlobalRemove(key) {
         localStorage.removeItem(key);
     }

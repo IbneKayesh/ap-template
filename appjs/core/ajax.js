@@ -10,45 +10,15 @@ const API = {
     },
 
     async post(url, data, success, error, complete) {
-        console.log(url);
-
-
-        const appToken = State.GlobalGet(API_AUTH_APP_TOKEN);
+        const appToken = State.GlobalGetValue(API_AUTH_APP_TOKEN);
         const headersData = appToken ? {
             'app-token': `${appToken}`,
         } : {
             //default keys
         };
-
-        console.log('fake ' + appToken);
         try {
             await $.ajax({
                 url,
-                method: "POST",
-                contentType: "application/json",
-                headers: headersData,
-                data: JSON.stringify(data),
-                success,
-                error,
-                complete,
-            });
-        } catch (err) {
-            console.error('Error during POST request:', err);
-        }
-    },
-    
-    async postRequest(data, success, error, complete) {
-        const appToken = State.GlobalGet(API_AUTH_APP_TOKEN);
-        const headersData = appToken ? {
-            'app-token': `${appToken}`,
-        } : {
-            //default keys
-        };
-
-        console.log('fake ');
-        try {
-            await $.ajax({
-                url : `${API_BASE_URL}/Perform`,
                 method: "POST",
                 contentType: "application/json",
                 headers: headersData,

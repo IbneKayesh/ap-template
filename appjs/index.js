@@ -41,6 +41,7 @@ $(document).ready(function () {
 function Logout() {
     // Clear user state from localStorage
     State.GlobalRemove(USER_LOGIN_STATE);
+    State.GlobalRemove(API_AUTH_APP_TOKEN);    
     // Redirect to login page
     window.location = "/login.html";
 }
