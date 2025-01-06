@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<script src="https://cdn.jsdelivr.net/npm/alpinejs" defer></script>
+
+<div x-data="{ showEntry: true }">
+    <div class="text-center" x-show="showEntry">
+        <p>Entry Page</p>
+    </div>
+    <div class="text-center" x-show="!showEntry">
+        <p>List Page</p>
+    </div>
+
+    <button class="btn btn-primary" @@click="showEntry = true">Show Entry</button>
+    <button class="btn btn-primary" @@click="showEntry = false">Show List</button>
+</div>

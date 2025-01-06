@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Md. Ibne Kayesh" />
+    <meta name="description" content="Apprentice Programmer" />
+    <title>inputs | AP</title>
+    <!--template-->
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="fontawesome-free/css/all.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!--navbar logo, title, menu and user-->
+    <div class="header">
+        <!--site log, name-->
+        <div class="site-logo">
+            <i class="fas fa-home"></i>
+            <strong>Apprentice Programmer</strong>
+        </div>
+        <!--menu and dropdown menu-->
+        <div class="navbar-menu">
+            <div class="navbar-dropdown">
+                <span>Elements <i class="fas fa-caret-down"></i></span>
+                <div class="navbar-dropdown-content">
+                    <ul class="navbar-menu-items">
+                        <li><a href="div.html">div</a></li>
+                        <li><a href="buttons.html">buttons</a></li>
+                        <li><a href="input.html">inputs</a></li>
+                    </ul>
+                </div>
+            </div>
+            <a href="index.html">Blank</a>
+        </div>
+        <!--logged in user-->
+        <div class="navbar-user">
+            <span>Username</span>
+            <i class="fas fa-power-off"></i>
+            <div class="user-dropdown">
+                <div class="user-icon">
+                    <img src="img/user-picture.png" alt="User Picture" />
+                </div>
+                <p class="user-name"><strong>Username</strong></p>
+                <p class="user-designation">Designation: Developer</p>
+                <div class="user-dropdown-footer">
+                    <button class="button change-password">Change Password</button>
+                    <button class="button logout">Logout</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="header-content row-content">
+    </div>
+
+
+    <!--main content container-->
+    <div class="container">
+        <p>Inputs</p>
+        <div class="row">
+            <div class="col col-md-1 col-12 col-border">
+                <div class="form-group">
+                    <label for="textInput">Text Input:</label>
+                    <input type="text" id="textInput" placeholder="Enter text here" />
+                </div>
+            </div>
+            <div class="col col-md-1 col-12 col-border">
+                <div class="form-group">
+                    <label>Must Select</label>
+                    <label>
+                        <input type="checkbox" id="checkboxInput" />
+                        Check this box
+                    </label>
+                </div>
+            </div>
+            <div class="col col-md-1 col-12 col-border">
+                <div class="custom-select">
+                    <label for="selectInput">Select Option:</label>
+                    <select id="selectInput">
+                        <option value="option1">Option 1</option>
+                        <option value="option2">Option 2</option>
+                        <option value="option3">Option 3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col col-md-1 col-12 col-border">
+                <div class="form-group">
+                    <label>Enter number here</label>
+                    <input type="number" placeholder="Enter number here" />
+                </div>
+            </div>
+            <div class="col col-md-1 col-12 col-border">
+                <div class="form-group">
+                    <textarea cols="4" rows="2" placeholder="Text area"></textarea>
+                </div>
+            </div>
+            <div class="col col-md-1 col-12 col-border">
+                <div class="form-group">
+                    <label class="radio-container">
+                        <input type="radio" name="options" value="1" />
+                        <span class="radio-text">Option 1</span>
+                    </label>
+                    <label class="radio-container">
+                        <input type="radio" name="options" value="2" />
+                        <span class="radio-text">Option 2</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="col col-md-1 col-12 col-border">
+                <div class="form-group">
+                    <input type="file" id="fileUpload" accept=".txt" />
+                    <label for="fileUpload" id="fileLabel">Upload PDF</label>
+                </div>
+            </div>
+
+            <div class="col col-md-1 col-12 col-border">                
+                <div class="form-group">
+                    <label for="salesDate">Sales Date</label>
+                    <input type="date" />
+                    <input type="datetime-local" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--footer-->
+    <div class="footer">
+        <p>2024 - ESBS @ Your Business Assistant</p>
+    </div>
+    <!--template-->
+    <script src="jquery/jquery-3.6.0.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Md. Ibne Kayesh" />
+    <meta name="description" content="Apprentice Programmer" />
+    <title>div | AP</title>
+    <!--template-->
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="fontawesome-free/css/all.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!--navbar logo, title, menu and user-->
+    <div class="header">
+        <!--site log, name-->
+        <div class="site-logo">
+            <i class="fas fa-home"></i>
+            <strong>Apprentice Programmer</strong>
+        </div>
+        <!--menu and dropdown menu-->
+        <div class="navbar-menu">
+            <div class="navbar-dropdown">
+                <span>Elements <i class="fas fa-caret-down"></i></span>
+                <div class="navbar-dropdown-content">
+                    <ul class="navbar-menu-items">
+                        <li><a href="div.html">div</a></li>
+                        <li><a href="buttons.html">buttons</a></li>
+                        <li><a href="input.html">inputs</a></li>
+                    </ul>
+                </div>
+            </div>
+            <a href="index.html">Blank</a>
+        </div>
+        <!--logged in user-->
+        <div class="navbar-user">
+            <span>Username</span>
+            <i class="fas fa-power-off"></i>
+            <div class="user-dropdown">
+                <div class="user-icon">
+                    <img src="img/user-picture.png" alt="User Picture" />
+                </div>
+                <p class="user-name"><strong>Username</strong></p>
+                <p class="user-designation">Designation: Developer</p>
+                <div class="user-dropdown-footer">
+                    <button class="button change-password">Change Password</button>
+                    <button class="button logout">Logout</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="header-content row-content">
+    </div>
+
+
+    <!--main content container-->
+    <div class="container">
+        <!--div row-->
+        <p>Fix Columns with border</p>
+        <div class="row">
+            <div class="col col-1 col-border">.row .col .col-1</div>
+            <div class="col col-2 col-border">.row .col .col-2</div>
+            <div class="col col-3 col-border">.row .col .col-3</div>
+            <div class="col col-6 col-border">.row .col .col-6</div>
+        </div>
+
+        <!--div row-->
+        <p>Medium, Small Screen Columns</p>
+        <div class="row">
+            <div class="col col-md-1 col-12 col-border">.row .col .col-1</div>
+            <div class="col col-md-2 col-12 col-border">.row .col .col-2</div>
+            <div class="col col-md-3 col-12 col-border">.row .col .col-3</div>
+            <div class="col col-md-6 col-12 col-border">.row .col .col-6</div>
+        </div>
+    </div>
+
+    <!--footer-->
+    <div class="footer">
+        <p>2024 - ESBS @ Your Business Assistant</p>
+    </div>
+    <!--template-->
+    <script src="jquery/jquery-3.6.0.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
