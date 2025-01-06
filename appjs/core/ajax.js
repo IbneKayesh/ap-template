@@ -16,6 +16,7 @@ const API = {
         } : {
             //default keys
         };
+        console.log(appToken)
         try {
             await $.ajax({
                 url,

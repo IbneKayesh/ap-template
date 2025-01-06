@@ -4,7 +4,7 @@ $(document).ready(function () {
     const userGlobalState = State.GlobalGet(USER_LOGIN_STATE);
     if (userGlobalState) {
         // Redirect to list page if already logged in
-        window.location = "/";
+        //window.location = "/";
     }
 });
 
@@ -185,7 +185,7 @@ function PageGoActionEvent(action, dataid) {
                 State.GlobalSet(KEY_USER_ID,'kayesh');
                 State.GlobalSet(KEY_USER_KEY,'asp.net');
                 // Redirect to the list page
-                window.location = "/";
+                //window.location = "/";
                 //window.location.reload();
             } else {
                 Popup.Show("error", "Request submission is failed, Fix errors and try again!");

@@ -1,0 +1,97 @@
+﻿/***
+    Author : Md. Ibne Kayesh
+    License: MIT
+    Version : 1.0.0
+    Date: Oct - 2024
+    Inspired from Bootstrap, Tailwind CSS and jQuery
+ ***/
+
+/**** dismissable popup notification styles ****/
+
+
+#notification-container {
+    position: fixed;
+    top: 30px;
+    right: 20px;
+    width: auto;
+    z-index: 1000;
+}
+
+.notification {
+    display: none;
+    padding: 5px;
+    margin: 5px 0;
+    border-radius: 3px;
+    color: #ffff;
+    transition: all .3s ease-in-out;
+    box-shadow: 0 3px 10px #0003;
+    border: 2.5px dashed transparent;
+    opacity: 0.2;
+}
+
+    .notification.success {
+        background-color: #4CAF50;
+    }
+
+    .notification.error {
+        background-color: #F44336;
+    }
+
+    .notification.info {
+        background-color: #2196F3;
+    }
+
+    .notification.warn {
+        background-color: #FF9800;
+    }
+
+    .notification.success .icon-button {
+        background-color: #4CAF50;
+    }
+
+    .notification.error .icon-button {
+        background-color: #F44336;
+    }
+
+    .notification.info .icon-button {
+        background-color: #2196F3;
+    }
+
+    .notification.warn .icon-button {
+        background-color: #FF9800;
+    }
+
+    .notification .icon-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        color: #fff;
+        margin-right: 10px
+    }
+
+/**** confirm popup notification with confirmation styles ****/
+/* .confirm-dialog {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        } */
+
+.confirm-dialog p {
+    margin: 0 0 15px;
+}
+
+.confirm-dialog {
+    display: none;
+    background-color: #71435F;
+    color: #fff;
+    border: 1.5px solid #F44336;
+    border-radius: 3px;
+    padding: 25px;
+    box-shadow: 0 4px 8px #0003;
+    z-index: 9999;
+    background-image: linear-gradient( 89.4deg, rgba(100,0,39,1) 0.8%, rgba(10,35,104,1) 99.4% );
+}

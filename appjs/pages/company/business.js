@@ -64,82 +64,29 @@ function PageGoValidateInput(action) {
             isValid &= ValidateInputField('#CurrencyId', value => value === '' || value === '-' || value === null, "Currency is required");
             isValid &= ValidateInputField('#MaxEmployee', value => value === '' || parseInt(value) < 1, "Max Employee is required");
             isValid &= ValidateInputField('#MaxSalary', value => value === '' || parseInt(value) < 1, "Max Salary is required");
-
             newDataCollection =
-                [
-                    {
-                        "RESOURCE": "Setup.delete-business",
-                        "PARAMS": [
-                            {
-                                "PARAM": "Action",
-                                "VALUE": "INSERT"
-                            },
-                            {
-                                "PARAM": "Id",
-                                "VALUE": $('#Id').val().trim()
-                            },
-                            {
-                                "PARAM": "BusinessLogo",
-                                "VALUE": $('#BusinessLogo').val().trim()
-                            },
-                            {
-                                "PARAM": "BusinessName",
-                                "VALUE": $('#BusinessName').val().trim()
-                            },
-                            {
-                                "PARAM": "ShortName",
-                                "VALUE": $('#ShortName').val().trim()
-                            },
-                            {
-                                "PARAM": "OfficeAddress",
-                                "VALUE": $('#OfficeAddress').val().trim()
-                            },
-                            {
-                                "PARAM": "ContactName",
-                                "VALUE": $('#ContactName').val().trim()
-                            },
-                            {
-                                "PARAM": "ContactNo",
-                                "VALUE": $('#ContactNo').val().trim()
-                            },
-                            {
-                                "PARAM": "EmailAddress",
-                                "VALUE": $('#EmailAddress').val().trim()
-                            },
-                            {
-                                "PARAM": "BIN",
-                                "VALUE": $('#BIN').val().trim()
-                            },
-                            {
-                                "PARAM": "TaxVATNo",
-                                "VALUE": $('#TaxVATNo').val().trim()
-                            },
-                            {
-                                "PARAM": "CountryId",
-                                "VALUE": $('#CountryId').val()
-                            },
-                            {
-                                "PARAM": "CurrencyId",
-                                "VALUE": $('#CurrencyId').val()
-                            },
-                            {
-                                "PARAM": "MaxEmployee",
-                                "VALUE": $('#MaxEmployee').val()
-                            },
-                            {
-                                "PARAM": "MaxSalary",
-                                "VALUE": $('#MaxSalary').val()
-                            },
-                            {
-                                "PARAM": "IsActive",
-                                "VALUE": $('#IsActive').is(':checked') || false
-                            }
-                        ]
-                    }
-                ];
-
+            {
+                Id: $('#Id').val().trim(),
+                BusinessLogo: $('#BusinessLogo').val().trim(),
+                BusinessName: $('#BusinessName').val().trim(),
+                ShortName: $('#ShortName').val().trim(),
+                OfficeAddress: $('#OfficeAddress').val().trim(),
+                ContactName: $('#ContactName').val().trim(),
+                ContactNo: $('#ContactNo').val().trim(),
+                EmailAddress: $('#EmailAddress').val().trim(),
+                BIN: $('#BIN').val().trim(),
+                TaxVATNo: $('#TaxVATNo').val().trim(),
+                CountryId: $('#CountryId').val(),
+                CurrencyId: $('#CurrencyId').val(),
+                MaxEmployee: $('#MaxEmployee').val(),
+                MaxSalary: $('#MaxSalary').val(),
+                IsActive: $('#IsActive').is(':checked') || false
+            }
+            newDataCollection = BindApiBodyInput('Setup.business', 'INSERT', newDataCollection)
             break;
-
+        case 'testBind':
+            console.log('testBind action');
+            break;
         default:
             console.log('Invalid action');
             break;
@@ -252,26 +199,6 @@ function GenerateTableHTML(action, dynData) {
 }
 
 //function: 5
-function PageGoNext2(action, dataid) {
-    switch (action) {
-        case 'div-page-list-business':
-            $('#div-page-entry-business').addClass('d-none');
-            $('#btn-back-to-entry').removeClass('d-none');
-            $('#div-page-list-business').removeClass('d-none');
-
-            break;
-        case 'div-page-entry-business':
-            $('#div-page-entry-business').removeClass('d-none');
-            $('#btn-back-to-entry').addClass('d-none');
-            $('#div-page-list-business').addClass('d-none');
-
-            break;
-
-        default:
-            console.log('Invalid action');
-            break;
-    }
-}
 function PageGoNext(action, dataid) {
     switch (action) {
         case 'div-page-list-business':
@@ -352,18 +279,7 @@ function PageGoActionEvent(action, dataid) {
 
         case 'div-page-list-business':
             WorkInProgress.Show('Getting ready...');
-            var newDataCollection =
-                [
-                    {
-                        "RESOURCE": "Setup.select-business",
-                        "PARAMS": [
-                            {
-                                "PARAM": "Action",
-                                "VALUE": "GETALL"
-                            }
-                        ]
-                    }
-                ];
+            var newDataCollection = BindApiBodyInput('Setup.business', 'GETALL', {})
             API.post(
                 `${API_BASE_URL}/Perform`,
                 newDataCollection,
@@ -387,15 +303,16 @@ function PageGoActionEvent(action, dataid) {
 
         case 'div-page-entry-business':
             var validationSummary = PageGoValidateInput(action);
+            
+            var newDataCollection = BindApiBodyInput('Setup.business', 'GETALL', {})
             if (validationSummary.isValid) {
                 WorkInProgress.Show('Getting ready....');
                 API.post(
-                    `${API_BASE_URL}/Company/Business/CreateUpdate`,
-                    validationSummary.newDataCollection,
+                    `${API_BASE_URL}/Perform`,
+                    newDataCollection,
                     (response) => {
                         var parsedData = JSON.parse(response);
-                        var dynData = parsedData.DynamicData;
-                        if (parsedData.SUCCESS) {
+                        if (parsedData.SUCCESS && parsedData.TABLES > 0) {
                             //PageGoClear('div-page-entry-business');
                             //PageGoActionEvent('div-page-list-business', '0');
                             Popup.Show("success", "Request submitted successfully");

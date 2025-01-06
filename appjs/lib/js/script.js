@@ -210,7 +210,7 @@ function EventEndDateTime() {
         } else {
             $(this).addClass("text-red");
             countdown = FormatStringToDateTime(eventEndTime);
-        }        
+        }
         $(this).text(countdown);
     });
 }
@@ -277,7 +277,28 @@ function ValidateInputField(fieldSelector, condition, errorMessage) {
 }
 
 function ClearInputFieldError(divSelector) {
-    $('#' + divSelector).find('input, select, textarea').each(function() {
+    $('#' + divSelector).find('input, select, textarea').each(function () {
         $(this).removeClass('input-error');
     });
+}
+
+function BindApiBodyInput(resource, action, dynData) {
+    let newDataCollection = [];
+    let jsonItem = {};
+    jsonItem.RESOURCE = resource;
+    jsonItem.PARAMS = [];
+    jsonItem.PARAMS.push({
+        "PARAM": "Action",
+        "VALUE": action
+    });
+    for (let key in dynData) {
+        if (dynData.hasOwnProperty(key)) {
+            jsonItem.PARAMS.push({
+                "PARAM": key,
+                "VALUE": dynData[key]
+            });
+        }
+    }
+    newDataCollection.push(jsonItem);
+    return newDataCollection;
 }
