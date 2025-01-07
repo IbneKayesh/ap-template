@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Md. Ibne Kayesh" />
     <meta name="description" content="Apprentice Programmer" />
-    <title>div | AP</title>
+    <title>Blank Page | AP</title>
     <!--template-->
     <link href="css/style.css" rel="stylesheet" />
     <link href="fontawesome-free/css/all.min.css" rel="stylesheet" />
@@ -63,22 +63,26 @@
 
     <!--main content container-->
     <div class="container">
-        <!--div row-->
-        <p>Fix Columns with border</p>
+        <p>Notification</p>
         <div class="row">
-            <div class="col col-1 col-border">.row .col .col-1</div>
-            <div class="col col-2 col-border">.row .col .col-2</div>
-            <div class="col col-3 col-border">.row .col .col-3</div>
-            <div class="col col-6 col-border">.row .col .col-6</div>
-        </div>
-
-        <!--div row-->
-        <p>Medium, Small Screen Columns</p>
-        <div class="row">
-            <div class="col col-md-1 col-12 col-border">.row .col .col-1</div>
-            <div class="col col-md-2 col-12 col-border">.row .col .col-2</div>
-            <div class="col col-md-3 col-12 col-border">.row .col .col-3</div>
-            <div class="col col-md-6 col-12 col-border">.row .col .col-6</div>
+            <div class="col col-3 col-border">
+                <button class="button btn-green" onclick="ShowSuccess();"><span class="far fa-check-circle"></span>
+                    success</button>
+                <button class="button btn-red" onclick="ShowError();"><span class="far fa-times-circle"></span>
+                    error</button>
+                <button class="button btn-blue" onclick="ShowInfo();"><span class="fa fa-info-circle"></span>
+                    info</button>
+                <button class="button btn-yellow" onclick="ShowWarn();"><span class="fas fa-exclamation-circle"></span>
+                    warn</button>
+                <button class="button" onclick="ShowConfirm();"><span class="far fa-question-circle"></span>
+                    confirm</button>
+            </div>
+            <div class="col col-3 col-border">
+                <button class="button btn-app" onclick="ShowModal();">
+                    <i class="fas fa-star"></i>
+                    <p>modal view</p>
+                </button>
+            </div>
         </div>
     </div>
 
@@ -86,9 +90,47 @@
     <div class="footer">
         <p>2024 - ESBS @ Your Business Assistant</p>
     </div>
+    <!--html parts-->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header div-border-bottom">
+                <strong class="modal-title">Modal Title</strong>
+                <span class="modal-close-btn-icon fas fa-times-circle text-red"></span>
+            </div>
+            <div class="modal-body">
+                <p>This is the body content of the modal.</p>
+                <!-- Add more elements as needed -->
+            </div>
+            <div class="modal-footer">
+                <button class="button modal-close-btn"><span class="fas fa-times-circle"></span> Close</button>
+                <button class="button btn-green modal-ok-btn"><span class="fas fa-check-circle"></span> OK</button>
+            </div>
+        </div>
+    </div>
     <!--template-->
     <script src="jquery/jquery-3.6.0.min.js"></script>
     <script src="js/script.js"></script>
+    <script>
+        function ShowSuccess() {
+            Popup.Show("success", "Request submitted successfully");
+        }
+        function ShowError() {
+            Popup.Show("error", "Request submission failed");
+        }
+        function ShowInfo() {
+            Popup.Show("info", "Request process started");
+        }
+        function ShowWarn() {
+            Popup.Show("warn", "Request process is hanging");
+        }
+        function ShowConfirm() {
+            Popup.Confirm("Are you sure you want to submit?", ShowSuccess, ShowError);
+        }
+
+        function ShowModal() {
+            ShowPopupModal();
+        }
+    </script>
 </body>
 
 </html>
