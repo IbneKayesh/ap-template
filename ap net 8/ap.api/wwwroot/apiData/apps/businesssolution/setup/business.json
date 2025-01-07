@@ -1,5 +1,0 @@
-﻿{
-  "DB": "MSSQL.BS",
-  "NAME": "Business",
-  "SQL": "SP_BUSINESS"
-}
