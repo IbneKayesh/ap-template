@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Md. Ibne Kayesh" />
+    <meta name="description" content="Apprentice Programmer" />
+    <title>apjs framework</title>
+    <!--template-->
+    <link href="lib/css/style.css" rel="stylesheet" />
+    <link href="lib/css/pop-notify.css" rel="stylesheet" />
+    <link href="lib/fontawesome-free-6.6.0-web/css/all.min.css" rel="stylesheet" />
+    <!--jQuery-->
+    <script src="lib/jquery/jquery-3.6.0.min.js"></script>
+    <!--framework-->
+    <script src="core/store.js"></script>
+    <script src="core/state.js"></script>
+    <script src="core/router.js"></script>
+    <script src="core/component.js"></script>
+    <script src="core/ajax.js"></script>
+    <script src="core/framework.js"></script>
+</head>
+
+<body>
+    <!--navbar logo, title, menu and user-->
+    <div class="header">
+        <!--site log, name-->
+        <div class="site-logo">
+            <i class="fas fa-home"></i>
+            <strong>Apprentice Programmer</strong>
+        </div>
+        <!--menu and dropdown menu-->
+        <div class="navbar-menu">
+            <a href="#/">Home</a>
+            <div class="navbar-dropdown">
+                <span>Elements <i class="fas fa-caret-down"></i></span>
+                <div class="navbar-dropdown-content">
+                    <ul class="navbar-menu-items">
+                        <li><a href="#/div-sample">DIV</a></li>
+                        <li><a href="#/customer-order">Order [Component]</a></li>
+                    </ul>
+                </div>
+            </div>
+            <a href="#/business">Business</a>
+            <a href="#/api-test">API test</a>
+        </div>
+        <!--logged in user-->
+        <div class="navbar-user">
+            <span class="navbar-user-name">User Name</span>
+            <i class="fas fa-power-off"></i>
+            <div class="user-dropdown">
+                <div class="user-icon">
+                    <img src="lib/img/user-picture.png" alt="User Picture" />
+                </div>
+                <p class="navbar-user-name"><strong>User Name</strong></p>
+                <p class="navbar-user-designation">Designation</p>
+                <div class="user-dropdown-footer">
+                    <button class="button change-password">Change Password</button>
+                    <button class="button logout" onclick="Logout()">Logout</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="header-content row-content">
+    </div>
+
+    <!--main content container-->
+    <div id="app" class="container">
+    </div>
+
+    <!--footer-->
+    <div class="footer">
+        <p>2024 - ESBS @ Your Business Assistant</p>
+    </div>
+    <!--html parts-->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header div-border-bottom">
+                <strong class="modal-title">Modal Title</strong>
+                <span class="modal-close-btn-icon fas fa-times-circle text-red"></span>
+            </div>
+            <div class="modal-body">
+                <p>This is the body content of the modal.</p>
+                <!-- Add more elements as needed -->
+            </div>
+            <div class="modal-footer">
+                <button class="button modal-close-btn"><span class="fas fa-times-circle"></span> Close</button>
+                <button class="button btn-green modal-ok-btn"><span class="fas fa-check-circle"></span> OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!--template-->
+    <script src="lib/js/script.js"></script>
+    <script src="lib/js/ap-data-table.js"></script>
+    <script src="lib/js/search-grid.js"></script>
+    <script src="lib/js/pop-notify.js"></script>
+    
+    <script src="index.js"></script>
+</body>
+
+</html>
